@@ -1,11 +1,11 @@
 import subprocess
-from flask_seed_api.extensions import db, ma
-from flask_seed_api import models, providers, flask_seed_factory
+from aptamer_api.extensions import db, ma
+from aptamer_api import models, providers, aptamer
 import glob
 import importlib
 import os
 
-app = flask_seed_factory.create_app(__name__)
+app = aptamer.create_app(__name__)
 
 def is_python_script(name):
     return '.py' in name
