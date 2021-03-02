@@ -1,14 +1,14 @@
 from flask import request, json, Response
 from werkzeug import secure_filename
 import os
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.providers.image_provider import ImageProvider
 
 provider = ImageProvider()
 
-@flask_seed_bp.route("/images", methods=['POST'])
+@aptamer_bp.route("/images", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def add_image():
@@ -25,7 +25,7 @@ def add_image():
             return Response(json.dumps([]), 201, mimetype="application/json")
     return Response(json.dumps([]), 404, mimetype="application/json")
 
-@flask_seed_bp.route("/images", methods=['GET'])
+@aptamer_bp.route("/images", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_image():

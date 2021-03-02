@@ -1,11 +1,11 @@
 import subprocess
 from aptamer_api.extensions import db, ma
-from aptamer_api import models, providers, aptamer
+from aptamer_api import models, providers, aptamer_factory
 import glob
 import importlib
 import os
 
-app = aptamer.create_app(__name__)
+app = aptamer_factory.create_app(__name__)
 
 def is_python_script(name):
     return '.py' in name

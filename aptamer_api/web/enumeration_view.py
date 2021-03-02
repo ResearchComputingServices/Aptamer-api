@@ -3,7 +3,7 @@ from flask import json, jsonify, Response, blueprints
 from aptamer_api.models.enumeration import Enumeration, EnumerationSchema
 from aptamer_api.models.enumeration_value import EnumerationValue, EnumerationValueSchema
 from aptamer_api.extensions import db, ma
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.providers.view_helper import ViewHelper
@@ -22,14 +22,14 @@ view_helper = ViewHelper()
 
 provider = EnumerationProvider()
 
-@flask_seed_bp.route("/enumerations/count", methods=['GET'])
+@aptamer_bp.route("/enumerations/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_enumeration_count():
     return view_helper.get_count(Enumeration)
 
 
-@flask_seed_bp.route("/enumerations", methods=["GET"])
+@aptamer_bp.route("/enumerations", methods=["GET"])
 @crossdomain(origin='*')
 @authentication
 def get_enumeration():
@@ -49,7 +49,7 @@ def get_enumeration():
     result = enumeration_schema_many.dump(properties)
     return jsonify(result)
 
-@flask_seed_bp.route("/enumerations", methods=['POST'])
+@aptamer_bp.route("/enumerations", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def add_enumeration():
@@ -63,7 +63,7 @@ def add_enumeration():
         response = Response(json.dumps(error), 500, mimetype = "application/json")
     return response
 
-@flask_seed_bp.route("/enumerations", methods=['PUT'])
+@aptamer_bp.route("/enumerations", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def update_enumeration():
@@ -85,7 +85,7 @@ def update_enumeration():
         response = Response(json.dumps(error), 500, mimetype = "application/json")
     return response
 
-@flask_seed_bp.route("/enumerations", methods=['DELETE'])
+@aptamer_bp.route("/enumerations", methods=['DELETE'])
 @crossdomain(origin='*')
 @authentication
 def delete_enumeration():
@@ -107,7 +107,7 @@ def delete_enumeration():
         response = Response(json.dumps(error), 500, mimetype="application/json")
     return response
 
-@flask_seed_bp.route("/enumerations/export", methods=['GET'])
+@aptamer_bp.route("/enumerations/export", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def export_enumerations():
@@ -182,7 +182,7 @@ def export_enumerations():
             response = Response(json.dumps(error), 404, mimetype="application/json")
             return response
 
-@flask_seed_bp.route("/enumerations/upload", methods=['POST'])
+@aptamer_bp.route("/enumerations/upload", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def upload_enumerations():

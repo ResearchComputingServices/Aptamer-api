@@ -106,5 +106,38 @@
             }
         ],
         "fields": []
+    },
+    {
+        "name": "zahraardalani",
+        "first_name": "Zahra",
+        "last_name": "Vazifeh Ardalani",
+        "roles": [
+            {
+                "name": "Administrator"
+            }
+        ],
+        "fields": []
+    },
+    {
+        "name": "testcontributor",
+        "first_name": "Test",
+        "last_name": "Contributor",
+        "roles": [
+            {
+                "name": "Contributor"
+            }
+        ],
+        "fields": []
+    },
+    {
+        "name": "testresearcher",
+        "first_name": "Test",
+        "last_name": "Researcher",
+        "roles": [
+            {
+                "name": "Researcher"
+            }
+        ],
+        "fields": []
     }
 ]

@@ -2,7 +2,7 @@ from flask import request
 from flask import json, jsonify, Response, blueprints
 from aptamer_api.models.role import Role, RoleSchema
 from aptamer_api.extensions import db, ma
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.providers.roles_provider import RoleProvider
@@ -12,13 +12,13 @@ role_schema_many = RoleSchema(many=True)
 
 provider = RoleProvider()
 
-@flask_seed_bp.route("/roles/count", methods=['GET'])
+@aptamer_bp.route("/roles/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_role_count():
     return provider.get_count(Role)
 
-@flask_seed_bp.route("/roles", methods=['GET'])
+@aptamer_bp.route("/roles", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_role():
@@ -38,7 +38,7 @@ def get_role():
     result = role_schema_many.dump(properties)
     return jsonify(result)
 
-@flask_seed_bp.route("/roles", methods=['POST'])
+@aptamer_bp.route("/roles", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def add_role():
@@ -55,7 +55,7 @@ def add_role():
 
 
 
-@flask_seed_bp.route("/roles", methods=['PUT'])
+@aptamer_bp.route("/roles", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def update_role():
@@ -78,7 +78,7 @@ def update_role():
 
     return response
 
-@flask_seed_bp.route("/roles", methods=['DELETE'])
+@aptamer_bp.route("/roles", methods=['DELETE'])
 @crossdomain(origin='*')
 @authentication
 def delete_role():

@@ -2,7 +2,7 @@ from flask import request, send_file
 from flask import json, jsonify, Response
 from aptamer_api.models.user_field_type import UserFieldType, UserFieldTypeSchema
 from aptamer_api.extensions import db, ma
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.providers.user_field_type_provider import UserFieldTypeProvider
@@ -13,13 +13,13 @@ user_field_type_schema_many = UserFieldTypeSchema(many=True)
 
 provider = UserFieldTypeProvider()
 
-@flask_seed_bp.route("/user_field_types/count", methods=['GET'])
+@aptamer_bp.route("/user_field_types/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_field_types_count():
     return provider.get_count(UserFieldType)
 
-@flask_seed_bp.route("/user_field_types", methods=['GET'])
+@aptamer_bp.route("/user_field_types", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_field_type():
@@ -40,7 +40,7 @@ def get_user_field_type():
     return jsonify(result)
 
 
-@flask_seed_bp.route("/user_field_types", methods=['POST'])
+@aptamer_bp.route("/user_field_types", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def add_user_field_type():
@@ -55,7 +55,7 @@ def add_user_field_type():
 
     return response
 
-@flask_seed_bp.route("/user_field_types", methods=['PUT'])
+@aptamer_bp.route("/user_field_types", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def update_user_field_type():
@@ -73,7 +73,7 @@ def update_user_field_type():
 
     return response
 
-@flask_seed_bp.route("/user_field_types", methods=['DELETE'])
+@aptamer_bp.route("/user_field_types", methods=['DELETE'])
 @crossdomain(origin='*')
 @authentication
 def delete_user_field_type():
@@ -93,7 +93,7 @@ def delete_user_field_type():
         response = Response(json.dumps(error), 500, mimetype="application/json")
     return response
 
-@flask_seed_bp.route("/user_field_types/export", methods=['GET'])
+@aptamer_bp.route("/user_field_types/export", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def export_user_field_types():

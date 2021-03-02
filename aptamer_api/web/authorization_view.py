@@ -2,7 +2,7 @@ from flask import request
 from flask import json, jsonify, Response, blueprints
 from aptamer_api.models.authorization import Authorization, AuthorizationSchema
 from aptamer_api.extensions import db, ma
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.decorators.authorization import authorization
@@ -13,7 +13,7 @@ authorization_schema_many = AuthorizationSchema(many=True)
 
 provider = BaseProvider()
 
-@flask_seed_bp.route("/authorization/count", methods=['GET'])
+@aptamer_bp.route("/authorization/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 @authorization(['read-authorization'])
@@ -21,7 +21,7 @@ def get_authorization_count():
     return provider.get_count(Authorization)
 
 
-@flask_seed_bp.route("/authorization", methods=['GET'])
+@aptamer_bp.route("/authorization", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 @authorization(['read-authorization'])

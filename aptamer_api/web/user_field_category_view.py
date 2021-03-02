@@ -3,7 +3,7 @@ from flask import json, jsonify, Response
 from aptamer_api.models.user_field_category import UserFieldCategory, UserFieldCategorySchema
 from aptamer_api.models.user_field_type import UserFieldType, UserFieldTypeSchema
 from aptamer_api.extensions import db, ma
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.providers.user_field_category_provider import UserFieldCategoryProvider
@@ -16,13 +16,13 @@ user_field_category_schema_many = UserFieldCategorySchema(many=True)
 
 provider = UserFieldCategoryProvider()
 
-@flask_seed_bp.route("/user_field_categories/count", methods=['GET'])
+@aptamer_bp.route("/user_field_categories/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_field_categories_count():
     return provider.get_count(UserFieldCategory)
 
-@flask_seed_bp.route("/user_field_categories", methods=['GET'])
+@aptamer_bp.route("/user_field_categories", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_field_category():
@@ -63,7 +63,7 @@ def get_user_field_category():
     result = user_field_category_schema_many.dump(properties)
     return jsonify(result)
 
-@flask_seed_bp.route("/user_field_categories", methods=['POST'])
+@aptamer_bp.route("/user_field_categories", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def add_user_field_category():
@@ -79,7 +79,7 @@ def add_user_field_category():
 
     return response
 
-@flask_seed_bp.route("/user_field_categories", methods=['PUT'])
+@aptamer_bp.route("/user_field_categories", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def update_user_field_category():
@@ -96,7 +96,7 @@ def update_user_field_category():
 
     return response
 
-@flask_seed_bp.route("/user_field_categories", methods=['DELETE'])
+@aptamer_bp.route("/user_field_categories", methods=['DELETE'])
 @crossdomain(origin='*')
 @authentication
 def delete_user_field_category():
@@ -113,7 +113,7 @@ def delete_user_field_category():
 
     return response
 
-@flask_seed_bp.route("/user_field_categories/export", methods=['GET'])
+@aptamer_bp.route("/user_field_categories/export", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def export_demographic_field():

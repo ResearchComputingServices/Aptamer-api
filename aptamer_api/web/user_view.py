@@ -4,7 +4,7 @@ from aptamer_api.models.role import Role, RoleSchema
 from aptamer_api.models.user import User, UserSchema
 from aptamer_api.models.user_field import UserField
 from aptamer_api.extensions import db, ma
-from aptamer_api.web.common_view import flask_seed_bp
+from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
 from aptamer_api.decorators.authentication import authentication
 from aptamer_api.decorators.authorization import authorization
@@ -26,7 +26,7 @@ provider = UserProvider()
 keycloak = UserKeycloak()
 
 
-@flask_seed_bp.route('/users/login', methods=['GET'])
+@aptamer_bp.route('/users/login', methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def login():
@@ -49,7 +49,7 @@ def login():
                 'name': name,
                 'first_name': first_name,
                 'last_name': last_name,
-                'roles': [{ 'name': 'Test Taker'}],
+                'roles': [{ 'name': 'Contributor'}],
                 'fields': []
             })
             return jsonify(user_schema.dump(user))
@@ -58,7 +58,7 @@ def login():
         return Response(json.dumps(error), 403, mimetype='application/json')
     return Response(error, 403, mimetype='application/json')
 
-@flask_seed_bp.route("/users/count", methods=['GET'])
+@aptamer_bp.route("/users/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_count():
@@ -74,7 +74,7 @@ def get_user_count():
     return response
 
 
-@flask_seed_bp.route("/users", methods=['GET'])
+@aptamer_bp.route("/users", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user():
@@ -101,7 +101,7 @@ def get_user():
 
     return response
 
-@flask_seed_bp.route("/users", methods=['POST'])
+@aptamer_bp.route("/users", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def add_user():
@@ -134,7 +134,7 @@ def add_user():
 
     return response
 
-@flask_seed_bp.route("/users/reset_keycloak_password", methods=['PUT'])
+@aptamer_bp.route("/users/reset_keycloak_password", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def reset_user_keycloak_password():
@@ -169,7 +169,7 @@ def reset_user_keycloak_password():
 
 
 
-@flask_seed_bp.route("/users/demographic_questionnaire", methods=['PUT'])
+@aptamer_bp.route("/users/demographic_questionnaire", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def update_demographic_questionnaire():
@@ -195,7 +195,7 @@ def update_demographic_questionnaire():
 
 
 
-@flask_seed_bp.route("/users", methods=['PUT'])
+@aptamer_bp.route("/users", methods=['PUT'])
 @crossdomain(origin='*')
 @authentication
 def update_user():
@@ -218,7 +218,7 @@ def update_user():
 
     return response
 
-@flask_seed_bp.route("/users", methods=['DELETE'])
+@aptamer_bp.route("/users", methods=['DELETE'])
 @crossdomain(origin='*')
 @authentication
 def delete_user():
@@ -240,7 +240,7 @@ def delete_user():
 
     return response
 
-@flask_seed_bp.route("/users/export", methods=['GET'])
+@aptamer_bp.route("/users/export", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def export_users():
@@ -521,7 +521,7 @@ def __import_user_in_db(d):
                 user_data["last_name"] = d["Last Name"]
                 user_data["id"] = provider.generate_id(field=User.id)
                 user = User(user_data)
-                role = Role.query.filter_by(name="Test Taker").first()
+                role = Role.query.filter_by(name="Contributor").first()
                 user.roles.append(role)
                 user.fields.append(UserField(
                     {"name": "student_id", "type": "text", "value": str(d["Student ID"]).replace(".0", "") if not math.isnan(d["Student ID"]) else None, "user_id": user.id}))
@@ -563,7 +563,7 @@ def  __import_user_in_keycloak(user_dict, token):
     return token
 
 
-@flask_seed_bp.route("users/upload", methods=['POST'])
+@aptamer_bp.route("users/upload", methods=['POST'])
 @crossdomain(origin='*')
 @authentication
 def import_users():
@@ -595,7 +595,7 @@ def import_users():
     return response
 
 
-@flask_seed_bp.route("/test_taker/demographic_questionnaires", methods=['GET'])
+@aptamer_bp.route("/test_taker/demographic_questionnaires", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_demographic_questionnaire():
@@ -605,7 +605,7 @@ def get_demographic_questionnaire():
 
         user = provider.get_authenticated_user()
         if user:
-            is_test_taker = provider.has_role(user, 'Test Taker')
+            is_test_taker = provider.has_role(user, 'Contributor')
             if is_test_taker:
                 test_taker_id =user.id
                 properties = provider.get_demographic_fields(test_taker_id, start_datetime_rq, end_datetime_rq)
@@ -626,7 +626,7 @@ def get_demographic_questionnaire():
 
 
 
-@flask_seed_bp.route("/admin/user_sessions", methods=['GET'])
+@aptamer_bp.route("/admin/user_sessions", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_sessions():
@@ -649,7 +649,7 @@ def get_user_sessions():
     return response
 
 
-@flask_seed_bp.route("/admin/user_sessions/count", methods=['GET'])
+@aptamer_bp.route("/admin/user_sessions/count", methods=['GET'])
 @crossdomain(origin='*')
 @authentication
 def get_user_sessions_count():

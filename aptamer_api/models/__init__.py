@@ -1,4 +1,6 @@
 from aptamer_api.models.role import *
+from aptamer_api.models.article import *
+from aptamer_api.models.temp_article import *
 from aptamer_api.models.user_field_type import *
 from aptamer_api.models.user_field_category import *
 from aptamer_api.models.user import *

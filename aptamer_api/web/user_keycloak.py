@@ -29,7 +29,7 @@ class UserKeycloak():
         return r
 
     def get_user_keycloak(self, username):
-        url = oidc.client_secrets["keycloak_uri_flask_seed"]
+        url = oidc.client_secrets["keycloak_uri_aptamer"]
 
         if username:
             url = url + '?username='+ username
@@ -93,7 +93,7 @@ class UserKeycloak():
             count = 0
             status_code = 401
             max_attempts = 2
-            url = oidc.client_secrets["keycloak_uri_flask_seed"]
+            url = oidc.client_secrets["keycloak_uri_aptamer"]
             payload = self.obtain_payload_keycloak(user)
 
             if not token:
@@ -139,7 +139,7 @@ class UserKeycloak():
                     data = response.json()
                     if len(data)>0:
                         user_keycloak_id = data[0]['id']
-                        url = oidc.client_secrets["keycloak_uri_flask_seed"] + '/'+ user_keycloak_id + '/reset-password'
+                        url = oidc.client_secrets["keycloak_uri_aptamer"] + '/'+ user_keycloak_id + '/reset-password'
                         p = {"type": "password",
                              "temporary": "true",
                               "value": password
@@ -161,7 +161,7 @@ class UserKeycloak():
     def get_client_id(self, realm):
 
         id = ''
-        url = oidc.client_secrets["keycloak_uri_flask_seed_base"] + '/clients/'
+        url = oidc.client_secrets["keycloak_uri_aptamer_base"] + '/clients/'
 
         token = self.obtain_keycloak_token()
 
@@ -203,9 +203,9 @@ class UserKeycloak():
 
         if len(id)>0:
             if first and max:
-                url = oidc.client_secrets["keycloak_uri_flask_seed_base"] + '/clients/' + id + '/user-sessions?first='+str(first)+'&max='+str(max)
+                url = oidc.client_secrets["keycloak_uri_aptamer_base"] + '/clients/' + id + '/user-sessions?first='+str(first)+'&max='+str(max)
             else:
-                url = oidc.client_secrets["keycloak_uri_flask_seed_base"] + '/clients/' + id + '/user-sessions'
+                url = oidc.client_secrets["keycloak_uri_aptamer_base"] + '/clients/' + id + '/user-sessions'
 
             #Get token
             token = self.obtain_keycloak_token()
@@ -228,7 +228,7 @@ class UserKeycloak():
         id = self.get_client_id(realm)
 
         if len(id) > 0:
-            url = oidc.client_secrets["keycloak_uri_flask_seed_base"] + '/clients/' + id + '/session-count'
+            url = oidc.client_secrets["keycloak_uri_aptamer_base"] + '/clients/' + id + '/session-count'
 
             # Get token
             token = self.obtain_keycloak_token()

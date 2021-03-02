@@ -40,6 +40,6 @@ def create_app(package_name):
     return app
 
 def register_blueprints(app):
-    from aptamer_api.web.views import flask_seed_bp
-    app.register_blueprint(flask_seed_bp, url_prefix='/flask_seed_api')
+    from aptamer_api.web.views import aptamer_bp
+    app.register_blueprint(aptamer_bp, url_prefix='/aptamer_api')
     return app
