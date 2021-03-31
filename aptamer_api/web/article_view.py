@@ -32,21 +32,20 @@ def get_article():
     try:
         id = request.args.get('id')
         name = request.args.get('name')
-
-        source_type = request.args.get('sourceType')
-        title_of_chapter_article = request.args.get('title_of_chapter_article')
-        page_range = request.args.get('page_range')
-        author_of_book = request.args.get('authorOfBook')
-        author_of_chapter_article = request.args.get('author_of_chapter_article')
-        publisher = request.args.get('publisher')
-        place_of_publication = request.args.get('place_of_publication')
-        year = request.args.get('year')
-        language = request.args.get('language')
-        variety_studied = request.args.get('variety_studied')
-        language_feature_studied = request.args.get('language_feature_studied')
-        region_field = request.args.get('region_field')
-        other_keywords = request.args.get('other_keywords')
-        source = request.args.get('source')
+        pubmedid = request.args.get('pubmedid')
+        doinumber = request.args.get('doinumber')
+        aptamertargettype = request.args.get('aptamertargettype')
+        aptamertargetname = request.args.get('aptamertargetname')
+        aptamersequence = request.args.get('aptamersequence')
+        lengthofrandomregion = request.args.get('lengthofrandomregion')
+        templatesequence = request.args.get('templatesequence')
+        yearofpublication = request.args.get('yearofpublication')
+        templatebias = request.args.get('templatebias')
+        selexmethod = request.args.get('selexmethod')
+        numberofselectionrounds = request.args.get('numberofselectionrounds')
+        separationpartitioningmethod = request.args.get('separationpartitioningmethod')
+        elutionrecoverymethod = request.args.get('elutionrecoverymethod')
+        selectionsolutionbufferingagent = request.args.get('selectionsolutionbufferingagent')
 
         properties = provider.query_all(Article)
 
@@ -65,118 +64,118 @@ def get_article():
                     name_ids.append(res_name.id)
             result_list.append(name_ids)
 
-        if source_type:
-            source_type = source_type.lower()
-            source_type_ids = []
-            for res_source_type in properties:
-                if res_source_type.source_type is not None and source_type in res_source_type.source_type.lower():
-                    source_type_ids.append(res_source_type.id)
-            print(source_type_ids)
-            result_list.append(source_type_ids)
+        if pubmedid:
+            pubmedid = pubmedid.lower()
+            pubmedid_ids = []
+            for res_pubmedid in properties:
+                if res_pubmedid.pubmedid is not None and pubmedid in res_pubmedid.pubmedid.lower():
+                    pubmedid_ids.append(res_pubmedid.id)
+            #print(pubmedid_ids)
+            result_list.append(pubmedid_ids)
 
-        if title_of_chapter_article:
-            title_of_chapter_article = title_of_chapter_article.lower()
-            title_of_chapter_article_ids = []
-            for res_title_of_chapter_article in properties:
-                if title_of_chapter_article in res_title_of_chapter_article.title_of_chapter_article.lower():
-                    title_of_chapter_article_ids.append(res_title_of_chapter_article.id)
-            result_list.append(title_of_chapter_article_ids)
+        if doinumber:
+            doinumber = doinumber.lower()
+            doinumber_ids = []
+            for res_doinumber in properties:
+                if doinumber in res_doinumber.doinumber.lower():
+                    doinumber_ids.append(res_doinumber.id)
+            result_list.append(doinumber_ids)
 
-        if page_range:
-            #page_range = page_range.lower()
-            page_range_ids = []
-            for res_page_range in properties:
-                if page_range in res_page_range.page_range.lower():
-                    page_range_ids.append(res_page_range.id)
-            result_list.append(page_range_ids)
+        if aptamertargettype:
+            aptamertargettype = aptamertargettype.lower()
+            aptamertargettype_ids = []
+            for res_aptamertargettype in properties:
+                if aptamertargettype in res_aptamertargettype.aptamertargettype.lower():
+                    aptamertargettype_ids.append(res_aptamertargettype.id)
+            result_list.append(aptamertargettype_ids)
 
-        if author_of_book:
-            author_of_book = author_of_book.lower()
-            author_of_book_ids = []
-            for res_author_of_book in properties:
-                if author_of_book in res_author_of_book.author_of_book.lower():
-                    author_of_book_ids.append(res_author_of_book.id)
-            result_list.append(author_of_book_ids)
+        if aptamertargetname:
+            aptamertargetname = aptamertargetname.lower()
+            aptamertargetname_ids = []
+            for res_aptamertargetname in properties:
+                if aptamertargetname in res_aptamertargetname.aptamertargetname.lower():
+                    aptamertargetname_ids.append(res_aptamertargetname.id)
+            result_list.append(aptamertargetname_ids)
 
-        if author_of_chapter_article:
-            author_of_chapter_article = author_of_chapter_article.lower()
-            author_of_chapter_article_ids = []
-            for res_author_of_chapter_article in properties:
-                if author_of_chapter_article in res_author_of_chapter_article.author_of_chapter_article.lower():
-                    author_of_chapter_article_ids.append(res_author_of_chapter_article.id)
-            result_list.append(author_of_chapter_article_ids)
+        if aptamersequence:
+            aptamersequence = aptamersequence.lower()
+            aptamersequence_ids = []
+            for res_aptamersequence in properties:
+                if aptamersequence in res_aptamersequence.aptamersequence.lower():
+                    aptamersequence_ids.append(res_aptamersequence.id)
+            result_list.append(aptamersequence_ids)
 
-        if publisher:
-            publisher = publisher.lower()
-            publisher_ids = []
-            for res_publisher in properties:
-                if publisher in res_publisher.publisher.lower():
-                    publisher_ids.append(res_publisher.id)
-            result_list.append(publisher_ids)
+        if lengthofrandomregion:
+            lengthofrandomregion = lengthofrandomregion.lower()
+            lengthofrandomregion_ids = []
+            for res_lengthofrandomregion in properties:
+                if lengthofrandomregion in res_lengthofrandomregion.lengthofrandomregion.lower():
+                    lengthofrandomregion_ids.append(res_lengthofrandomregion.id)
+            result_list.append(lengthofrandomregion_ids)
 
-        if place_of_publication:
-            place_of_publication = place_of_publication.lower()
-            place_of_publication_ids = []
-            for res_place_of_publication in properties:
-                if place_of_publication in res_place_of_publication.place_of_publication.lower():
-                    place_of_publication_ids.append(res_place_of_publication.id)
-            result_list.append(place_of_publication_ids)
+        if templatesequence:
+            templatesequence = templatesequence.lower()
+            templatesequence_ids = []
+            for res_templatesequence in properties:
+                if templatesequence in res_templatesequence.templatesequence.lower():
+                    templatesequence_ids.append(res_templatesequence.id)
+            result_list.append(templatesequence_ids)
 
 
-        if variety_studied:
-            variety_studied = variety_studied.lower()
-            variety_studied_ids = []
-            for res_variety_studied in properties:
-                if variety_studied in res_variety_studied.variety_studied.lower():
-                    variety_studied_ids.append(res_variety_studied.id)
-            result_list.append(variety_studied_ids)
+        if selexmethod:
+            selexmethod = selexmethod.lower()
+            selexmethod_ids = []
+            for res_selexmethod in properties:
+                if selexmethod in res_selexmethod.selexmethod.lower():
+                    selexmethod_ids.append(res_selexmethod.id)
+            result_list.append(selexmethod_ids)
 
-        if year:
-            year_ids = []
+        if yearofpublication:
+            yearofpublication_ids = []
             for res_year in properties:
-                if year in res_year.year:
-                    year_ids.append(res_year.id)
-            result_list.append(year_ids)
+                if yearofpublication in res_year.year:
+                    yearofpublication_ids.append(res_year.id)
+            result_list.append(yearofpublication_ids)
 
-        if language:
-            language = language.lower()
-            language_ids = []
-            for res_language in properties:
-                if language in res_language.language.lower():
-                    language_ids.append(res_language.id)
-            result_list.append(language_ids)
+        if templatebias:
+            templatebias = templatebias.lower()
+            templatebias_ids = []
+            for res_templatebias in properties:
+                if templatebias in res_templatebias.templatebias.lower():
+                    templatebias_ids.append(res_templatebias.id)
+            result_list.append(templatebias_ids)
 
-        if language_feature_studied:
-            language_feature_studied = language_feature_studied.lower()
-            language_feature_studied_ids = []
-            for res_language_feature_studied in properties:
-                if language_feature_studied in res_language_feature_studied.language_feature_studied.lower():
-                    language_feature_studied_ids.append(res_language_feature_studied.id)
-            result_list.append(language_feature_studied_ids)
+        if numberofselectionrounds:
+            numberofselectionrounds = numberofselectionrounds.lower()
+            numberofselectionrounds_ids = []
+            for res_numberofselectionrounds in properties:
+                if numberofselectionrounds in res_numberofselectionrounds.numberofselectionrounds.lower():
+                    numberofselectionrounds_ids.append(res_numberofselectionrounds.id)
+            result_list.append(numberofselectionrounds_ids)
 
-        if region_field:
-            region_field = region_field.lower()
-            region_field_ids = []
-            for res_region_field in properties:
-                if region_field in res_region_field.region_field.lower():
-                    region_field_ids.append(res_region_field.id)
-            result_list.append(region_field_ids)
+        if separationpartitioningmethod:
+            separationpartitioningmethod = separationpartitioningmethod.lower()
+            separationpartitioningmethod_ids = []
+            for res_separationpartitioningmethod in properties:
+                if separationpartitioningmethod in res_separationpartitioningmethod.separationpartitioningmethod.lower():
+                    separationpartitioningmethod_ids.append(res_separationpartitioningmethod.id)
+            result_list.append(separationpartitioningmethod_ids)
 
-        if other_keywords:
-            other_keywords = other_keywords.lower()
-            other_keywords_ids = []
-            for res_other_keywords in properties:
-                if other_keywords in res_other_keywords.other_keywords.lower():
-                    other_keywords_ids.append(res_other_keywords.id)
-            result_list.append(other_keywords_ids)
+        if elutionrecoverymethod:
+            elutionrecoverymethod = elutionrecoverymethod.lower()
+            elutionrecoverymethod_ids = []
+            for res_elutionrecoverymethod in properties:
+                if elutionrecoverymethod in res_elutionrecoverymethod.elutionrecoverymethod.lower():
+                    elutionrecoverymethod_ids.append(res_elutionrecoverymethod.id)
+            result_list.append(elutionrecoverymethod_ids)
 
-        if source:
-            source = source.lower()
-            source_ids = []
-            for res_source in properties:
-                if source in res_source.source.lower():
-                    source_ids.append(res_source.id)
-            result_list.append(source_ids)
+        if selectionsolutionbufferingagent:
+            selectionsolutionbufferingagent = selectionsolutionbufferingagent.lower()
+            selectionsolutionbufferingagent_ids = []
+            for res_selectionsolutionbufferingagent in properties:
+                if selectionsolutionbufferingagent in res_selectionsolutionbufferingagent.selectionsolutionbufferingagent.lower():
+                    selectionsolutionbufferingagent_ids.append(res_selectionsolutionbufferingagent.id)
+            result_list.append(selectionsolutionbufferingagent_ids)
 
         if len(result_list) > 2:
             intersection_fields_result_list = list(set(result_list[0]).intersection(set(result_list[1])))
@@ -238,7 +237,7 @@ def update_article():
             data = request.get_json()
             article = Article.query.filter_by(id=data.get('id')).first()
             if not article:
-                article = Article.query.filter_by(name=data.get('name')).first()
+                article = Article.query.filter_by(pubmedid=data.get('pubmedid')).first()
             if article:
                 if data.get('id') is None:
                     data['id'] = article.id
@@ -265,10 +264,12 @@ def delete_article():
         user = user_provider.get_authenticated_user()
         is_researcher_administrator = user_provider.has_role(user, 'Researcher') or user_provider.has_role(user, 'Administrator')
         if is_researcher_administrator:
+
             data = request.get_json()
             article = Article.query.filter_by(id=data.get('id')).first()
+
             if not article:
-                article = Article.query.filter_by(name=data.get('name')).first()
+                article = Article.query.filter_by(pubmedid=data.get('pubmedid')).first()
             if article:
                 db.session.delete(article)
                 db.session.commit()
@@ -292,20 +293,20 @@ def export_articles():
         id = request.args.get('id')
         name = request.args.get('name')
 
-        source_type = request.args.get('source_type')
-        title_of_chapter_article = request.args.get('title_of_chapter_article')
-        page_range = request.args.get('page_range')
-        author_of_book = request.args.get('author_of_book')
-        author_of_chapter_article = request.args.get('author_of_chapter_article')
-        publisher = request.args.get('publisher')
-        place_of_publication = request.args.get('place_of_publication')
-        year = request.args.get('year')
-        language = request.args.get('language')
-        variety_studied = request.args.get('variety_studied')
-        language_feature_studied = request.args.get('language_feature_studied')
-        region_field = request.args.get('region_field')
-        other_keywords = request.args.get('other_keywords')
-        source = request.args.get('source')
+        pubmedid = request.args.get('pubmedid')
+        doinumber = request.args.get('doinumber')
+        aptamertargettype = request.args.get('aptamertargettype')
+        aptamertargetname = request.args.get('aptamertargetname')
+        aptamersequence = request.args.get('aptamersequence')
+        lengthofrandomregion = request.args.get('lengthofrandomregion')
+        templatesequence = request.args.get('templatesequence')
+        yearofpublication = request.args.get('yearofpublication')
+        templatebias = request.args.get('templatebias')
+        selexmethod = request.args.get('selexmethod')
+        numberofselectionrounds = request.args.get('numberofselectionrounds')
+        separationpartitioningmethod = request.args.get('separationpartitioningmethod')
+        elutionrecoverymethod = request.args.get('elutionrecoverymethod')
+        selectionsolutionbufferingagent = request.args.get('selectionsolutionbufferingagent')
 
         properties = provider.query_all(Article)
 
@@ -324,116 +325,116 @@ def export_articles():
                     name_ids.append(res_name.id)
             result_list.append(name_ids)
 
-        if source_type:
-            source_type = source_type.lower()
-            source_type_ids = []
-            for res_source_type in properties:
-                if source_type in res_source_type.source_type.lower():
-                    source_type_ids.append(res_source_type.id)
-            result_list.append(source_type_ids)
+        if pubmedid:
+            pubmedid = pubmedid.lower()
+            pubmedid_ids = []
+            for res_pubmedid in properties:
+                if pubmedid in res_pubmedid.pubmedid.lower():
+                    pubmedid_ids.append(res_pubmedid.id)
+            result_list.append(pubmedid_ids)
 
-        if title_of_chapter_article:
-            title_of_chapter_article = title_of_chapter_article.lower()
-            title_of_chapter_article_ids = []
-            for res_title_of_chapter_article in properties:
-                if title_of_chapter_article in res_title_of_chapter_article.title_of_chapter_article.lower():
-                    title_of_chapter_article_ids.append(res_title_of_chapter_article.id)
-            result_list.append(title_of_chapter_article_ids)
+        if doinumber:
+            #doinumber = doinumber.lower()
+            doinumber_ids = []
+            for res_doinumber in properties:
+                if doinumber in res_doinumber.doinumber.lower():
+                    doinumber_ids.append(res_doinumber.id)
+            result_list.append(doinumber_ids)
 
-        if page_range:
-            # page_range = page_range.lower()
-            page_range_ids = []
-            for res_page_range in properties:
-                if page_range in res_page_range.page_range.lower():
-                    page_range_ids.append(res_page_range.id)
-            result_list.append(page_range_ids)
+        if aptamertargettype:
+            aptamertargettype = aptamertargettype.lower()
+            aptamertargettype_ids = []
+            for res_aptamertargettype in properties:
+                if aptamertargettype in res_aptamertargettype.aptamertargettype.lower():
+                    aptamertargettype_ids.append(res_aptamertargettype.id)
+            result_list.append(aptamertargettype_ids)
 
-        if author_of_book:
-            author_of_book = author_of_book.lower()
-            author_of_book_ids = []
-            for res_author_of_book in properties:
-                if author_of_book in res_author_of_book.author_of_book.lower():
-                    author_of_book_ids.append(res_author_of_book.id)
-            result_list.append(author_of_book_ids)
+        if aptamertargetname:
+            aptamertargetname = aptamertargetname.lower()
+            aptamertargetname_ids = []
+            for res_aptamertargetname in properties:
+                if aptamertargetname in res_aptamertargetname.aptamertargetname.lower():
+                    aptamertargetname_ids.append(res_aptamertargetname.id)
+            result_list.append(aptamertargetname_ids)
 
-        if author_of_chapter_article:
-            author_of_chapter_article = author_of_chapter_article.lower()
-            author_of_chapter_article_ids = []
-            for res_author_of_chapter_article in properties:
-                if author_of_chapter_article in res_author_of_chapter_article.author_of_chapter_article.lower():
-                    author_of_chapter_article_ids.append(res_author_of_chapter_article.id)
-            result_list.append(author_of_chapter_article_ids)
+        if aptamersequence:
+            aptamersequence = aptamersequence.lower()
+            aptamersequence_ids = []
+            for res_aptamersequence in properties:
+                if aptamersequence in res_aptamersequence.aptamersequence.lower():
+                    aptamersequence_ids.append(res_aptamersequence.id)
+            result_list.append(aptamersequence_ids)
 
-        if publisher:
-            publisher = publisher.lower()
-            publisher_ids = []
-            for res_publisher in properties:
-                if publisher in res_publisher.publisher.lower():
-                    publisher_ids.append(res_publisher.id)
-            result_list.append(publisher_ids)
+        if lengthofrandomregion:
+            lengthofrandomregion = lengthofrandomregion.lower()
+            lengthofrandomregion_ids = []
+            for res_lengthofrandomregion in properties:
+                if lengthofrandomregion in res_lengthofrandomregion.lengthofrandomregion.lower():
+                    lengthofrandomregion_ids.append(res_lengthofrandomregion.id)
+            result_list.append(lengthofrandomregion_ids)
 
-        if place_of_publication:
-            place_of_publication = place_of_publication.lower()
-            place_of_publication_ids = []
-            for res_place_of_publication in properties:
-                if place_of_publication in res_place_of_publication.place_of_publication.lower():
-                    place_of_publication_ids.append(res_place_of_publication.id)
-            result_list.append(place_of_publication_ids)
+        if templatesequence:
+            templatesequence = templatesequence.lower()
+            templatesequence_ids = []
+            for res_templatesequence in properties:
+                if templatesequence in res_templatesequence.templatesequence.lower():
+                    templatesequence_ids.append(res_templatesequence.id)
+            result_list.append(templatesequence_ids)
 
-        if variety_studied:
-            variety_studied = variety_studied.lower()
-            variety_studied_ids = []
-            for res_variety_studied in properties:
-                if variety_studied in res_variety_studied.variety_studied.lower():
-                    variety_studied_ids.append(res_variety_studied.id)
-            result_list.append(variety_studied_ids)
+        if selexmethod:
+            selexmethod = selexmethod.lower()
+            selexmethod_ids = []
+            for res_selexmethod in properties:
+                if selexmethod in res_selexmethod.selexmethod.lower():
+                    selexmethod_ids.append(res_selexmethod.id)
+            result_list.append(selexmethod_ids)
 
-        if year:
+        if yearofpublication:
             year_ids = []
             for res_year in properties:
-                if year in res_year.year:
+                if yearofpublication in res_year.yearofpublication:
                     year_ids.append(res_year.id)
             result_list.append(year_ids)
 
-        if language:
-            language = language.lower()
-            language_ids = []
-            for res_language in properties:
-                if language in res_language.language.lower():
-                    language_ids.append(res_language.id)
-            result_list.append(language_ids)
+        if templatebias:
+            templatebias = templatebias.lower()
+            templatebias_ids = []
+            for res_templatebias in properties:
+                if templatebias in res_templatebias.templatebias.lower():
+                    templatebias_ids.append(res_templatebias.id)
+            result_list.append(templatebias_ids)
 
-        if language_feature_studied:
-            language_feature_studied = language_feature_studied.lower()
-            language_feature_studied_ids = []
-            for res_language_feature_studied in properties:
-                if language_feature_studied in res_language_feature_studied.language_feature_studied.lower():
-                    language_feature_studied_ids.append(res_language_feature_studied.id)
-            result_list.append(language_feature_studied_ids)
+        if numberofselectionrounds:
+            numberofselectionrounds = numberofselectionrounds.lower()
+            numberofselectionrounds_ids = []
+            for res_numberofselectionrounds in properties:
+                if numberofselectionrounds in res_numberofselectionrounds.numberofselectionrounds.lower():
+                    numberofselectionrounds_ids.append(res_numberofselectionrounds.id)
+            result_list.append(numberofselectionrounds_ids)
 
-        if region_field:
-            region_field = region_field.lower()
-            region_field_ids = []
-            for res_region_field in properties:
-                if region_field in res_region_field.region_field.lower():
-                    region_field_ids.append(res_region_field.id)
-            result_list.append(region_field_ids)
+        if separationpartitioningmethod:
+            separationpartitioningmethod = separationpartitioningmethod.lower()
+            separationpartitioningmethod_ids = []
+            for res_separationpartitioningmethod in properties:
+                if separationpartitioningmethod in res_separationpartitioningmethod.separationpartitioningmethod.lower():
+                    separationpartitioningmethod_ids.append(res_separationpartitioningmethod.id)
+            result_list.append(separationpartitioningmethod_ids)
 
-        if other_keywords:
-            other_keywords = other_keywords.lower()
-            other_keywords_ids = []
-            for res_other_keywords in properties:
-                if other_keywords in res_other_keywords.other_keywords.lower():
-                    other_keywords_ids.append(res_other_keywords.id)
-            result_list.append(other_keywords_ids)
+        if elutionrecoverymethod:
+            elutionrecoverymethod = elutionrecoverymethod.lower()
+            elutionrecoverymethod_ids = []
+            for res_elutionrecoverymethod in properties:
+                if elutionrecoverymethod in res_elutionrecoverymethod.elutionrecoverymethod.lower():
+                    elutionrecoverymethod_ids.append(res_elutionrecoverymethod.id)
+            result_list.append(elutionrecoverymethod_ids)
 
-        if source:
-            source = source.lower()
-            source_ids = []
-            for res_source in properties:
-                if source in res_source.source.lower():
-                    source_ids.append(res_source.id)
-            result_list.append(source_ids)
+        if selectionsolutionbufferingagent:
+            selectionsolutionbufferingagent = selectionsolutionbufferingagent.lower()
+            selectionsolutionbufferingagent_ids = []
+            for res_selectionsolutionbufferingagent in properties:
+                if selectionsolutionbufferingagent in res_selectionsolutionbufferingagent.selectionsolutionbufferingagent.lower():
+                    selectionsolutionbufferingagent_ids.append(res_selectionsolutionbufferingagent.id)
+            result_list.append(selectionsolutionbufferingagent_ids)
 
         if len(result_list) > 2:
             intersection_fields_result_list = list(set(result_list[0]).intersection(set(result_list[1])))
@@ -447,26 +448,50 @@ def export_articles():
         else:
             intersection_fields_result_list = get_all_article_ids()
         specific_users_info = []
-        for specific_id in intersection_fields_result_list:
 
+        for specific_id in intersection_fields_result_list:
             s_a = Article.query.filter_by(id=specific_id).first()
             specific_users_info.append({
                 #"ID": s_a.id,
-                "Source Type": s_a.source_type,
-                "Title": s_a.name,
-                "Title of chapter, article": s_a.title_of_chapter_article,
-                "Page range (chapter, article)": s_a.page_range,
-                "Author of book": s_a.author_of_book,
-                "Author of Chapter, article": s_a.author_of_chapter_article,
-                "Publisher": s_a.publisher,
-                "Place of publication": s_a.place_of_publication,
-                "Year": s_a.year,
-                "Language": s_a.language,
-                "Variety studied": s_a.variety_studied,
-                "Language feature studied": s_a.language_feature_studied,
-                "Region field": s_a.region_field,
-                "Other Keywords": s_a.other_keywords,
-                "Source": s_a.source
+
+                "PubMed ID": s_a.pubmedid,
+                "DOI number": s_a.doinumber,
+                "Year of publication": s_a.yearofpublication,
+                "Aptamer Target Type": s_a.aptamertargettype,
+                "Aptamer Target Name": s_a.aptamertargetname,
+                "Aptamer Sequence": s_a.aptamersequence,
+                "Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA": s_a.templatesequence,
+                "Length of random region": s_a.lengthofrandomregion,
+                "Template Bias": s_a.templatebias,
+                "SELEX Method": s_a.selexmethod,
+                "Number of Selection Rounds": s_a.numberofselectionrounds,
+                "Separation (Partitioning) Method": s_a.separationpartitioningmethod,
+                "Elution/Recovery method": s_a.elutionrecoverymethod,
+                "Selection Solution Buffering Agent": s_a.selectionsolutionbufferingagent,
+                "Selection Solution pH": s_a.selectionsolutionph,
+                "Selection Solution Temperature °C": s_a.selectionsolutiontemperature,
+                "Concentration K (M)": s_a.concentrationkm,
+                "Concentration Mg (M)": s_a.concentrationmgm,
+                "Concentration Na (M)": s_a.concentrationnam,
+                "Concentration Zn (M)": s_a.concentrationznm,
+                "Concentration Ca (M)": s_a.concentrationcam,
+                "Concentration Other (M)": s_a.concentrationotherm,
+                "Affinity Method": s_a.affinitymethod,
+                "Affinity Method Conditions": s_a.affinitymethodconditions,
+                "Aptamer Type": s_a.aptamertype,
+                "Other modification": s_a.othermodification,
+                "KD Value (in Molar)": s_a.kdvalueinmolar,
+                "KD Error": s_a.kderror,
+                "Tested application/ purpose": s_a.testedapplicationpurpose,
+                "Mutational Analysis": s_a.mutationalanalysis,
+                "Minamers  (yes/no)": s_a.minamersyesno,
+                "Minimer 1 sequence": s_a.minimeronesequence,
+                "Minimer 1 Kd": s_a.minimeronekd,
+                "Minimer 2 sequence": s_a.minimertwosequence,
+                "Minimer 2 Kd": s_a.minimertwokd,
+                "Minimer 3 sequence": s_a.minimerthreesequence,
+                "Minimer 3 Kd": s_a.minimerthreekd,
+                "Notes": s_a.notes
             })
 
         output = BytesIO()
@@ -513,9 +538,9 @@ def generate_citation_articles():
                 s_a = Article.query.filter_by(name=name).first()
             else:
                 article_id = request.args.get('id')
-            author_last_name = s_a.author_of_book.split(" ")[1]
-            author_first_name_ini = s_a.author_of_book.split(" ")[0][0]
-            citation = f"{author_last_name}, {author_first_name_ini}. ({s_a.year}). {s_a.name}. {s_a.place_of_publication}: {s_a.publisher}."
+            author_last_name = s_a.aptamertargetname.split(" ")[1]
+            author_first_name_ini = s_a.aptamertargetname.split(" ")[0][0]
+            citation = f"{author_last_name}, {author_first_name_ini}. ({s_a.yearofpublication}). {s_a.name}. {s_a.templatesequence}: {s_a.lengthofrandomregion}."
             #txt = BytesIO()
             #txt.write(citation.encode("utf8"))
             output = BytesIO()
@@ -542,31 +567,86 @@ def upload_articles():
         if is_researcher_administrator:
             for _, row in data.iterrows():
                 d = dict(row)
-                if type(d["Title"]) == str:
+                #print(d)
+                if type(d["PubMed ID"]) == int:
                     article = {
                         "id": provider.generate_id(field=Article.id),
-                        "name": str(d["Title"]),
-                        "source_type": "" if type(d["Source Type"]) == float else str(d["Source Type"]),
-                        "title_of_chapter_article": "" if type(d["Title of chapter, article"]) == float else str(d["Title of chapter, article"]),
-                        "page_range": "" if type(d["Page range (chapter, article)"]) == float else str(d["Page range (chapter, article)"]),
-                        "author_of_book": "" if type(d["Author of book"]) == float else str(d["Author of book"]),
-                        "author_of_chapter_article": "" if type(d["Author of Chapter, article"]) else str(d["Author of Chapter, article"]),
-                        "publisher": "" if type(d["Publisher"]) == float else str(d["Publisher"]),
-                        "place_of_publication": "" if type(d["Place of publication"]) == float else str(d["Place of publication"]),
-                        "year": "" if type(d["Year"]) == float else str(d["Year"]),
-                        "language": "" if type(d["Language"]) == float else str(d["Language"]),
-                        "variety_studied": "" if type(d["Variety studied"]) == float else str(d["Variety studied"]),
-                        "language_feature_studied": "" if type(d["Language feature studied"]) else str(d["Language feature studied"]),
-                        "region_field": "" if type(d["Region field"]) == float else str(d["Region field"]),
-                        "other_keywords": "" if type(d["Other Keywords"]) == float else str(d["Other Keywords"]),
-                        "source": "" if type(d["Source"]) == float else str(d["Source"]),
+                        "name": "test",
+                        "pubmedid": "" if type(d["PubMed ID"]) == float else str(d["PubMed ID"]),
+                        "doinumber": "" if type(d["DOI number"]) == float else str(d["DOI number"]),
+                        "yearofpublication": "" if type(d["Year of publication"]) == float else str(
+                            d["Year of publication"]),
+                        "aptamertargettype": "" if type(d["Aptamer Target Type"]) == float else str(
+                            d["Aptamer Target Type"]),
+                        "aptamertargetname": "" if type(d["Aptamer Target Name"]) == float else str(
+                            d["Aptamer Target Name"]),
+                        "aptamersequence": "" if type(d["Aptamer Sequence"]) == float else str(d["Aptamer Sequence"]),
+                        #"aptamersequence": "CATCCATGGG",
+                        "templatesequence": "" if type(d[
+                                                           "Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA"]) == float else str(
+                            d["Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA"]),
+                        "lengthofrandomregion": "" if str(d["Length of random region"]) == 'nan' else str(
+                            d["Length of random region"]),
+                        "templatebias": "" if type(d["Template Bias"]) == float else str(d["Template Bias"]),
+                        "selexmethod": "" if type(d["SELEX Method"]) == float else str(d["SELEX Method"]),
+                        "numberofselectionrounds": "" if str(d["Number of Selection Rounds"]) == "nan" else str(
+                            d["Number of Selection Rounds"]),
+                        "separationpartitioningmethod": "" if type(
+                            d["Separation (Partitioning) Method"]) == float else str(
+                            d["Separation (Partitioning) Method"]),
+                        "elutionrecoverymethod": "" if type(d["Elution/Recovery method"]) == float else str(
+                            d["Elution/Recovery method"]),
+                        "selectionsolutionbufferingagent": "" if type(
+                            d["Selection Solution Buffering Agent"]) == float else str(
+                            d["Selection Solution Buffering Agent"]),
+                        "selectionsolutionph": "" if str(d["Selection Solution pH"]) == "nan" else str(
+                            round(d["Selection Solution pH"], 1)),
+                        "selectionsolutiontemperature": "" if str(
+                            d["Selection Solution Temperature °C"]) == "nan" else str(
+                            d["Selection Solution Temperature °C"]),
+                        "concentrationkm": "" if str(d["Concentration K (M)"]) == "nan" else str(
+                            d["Concentration K (M)"]),
+                        "concentrationmgm": "" if str(d["Concentration Mg (M)"]) == "nan" else str(
+                            d["Concentration Mg (M)"]),
+                        "concentrationnam": "" if str(d["Concentration Na (M)"]) == "nan" else str(
+                            d["Concentration Na (M)"]),
+                        "concentrationznm": "" if str(d["Concentration Zn (M)"]) == "nan" else str(
+                            d["Concentration Zn (M)"]),
+                        "concentrationcam": "" if str(d["Concentration Ca (M)"]) == "nan" else str(
+                            d["Concentration Ca (M)"]),
+                        "concentrationotherm": "" if str(d["Concentration Other (M)"]) == "nan" else str(
+                            d["Concentration Other (M)"]),
+                        "affinitymethod": "" if type(d["Affinity Method"]) == float else str(d["Affinity Method"]),
+                        "affinitymethodconditions": "" if type(d["Affinity Method Conditions"]) == float else str(
+                            d["Affinity Method Conditions"]),
+                        "aptamertype": "" if type(d["Aptamer Type"]) == float else str(d["Aptamer Type"]),
+                        "othermodification": "" if type(d["Other modification"]) == float else str(
+                            d["Other modification"]),
+                        "kdvalueinmolar": "" if str(d["KD Value (in Molar)"]) == "nan" else str(
+                            d["KD Value (in Molar)"]),
+                        "kderror": "" if str(d["KD Error"]) == "nan" else str(d["KD Error"]),
+                        "testedapplicationpurpose": "" if type(d["Tested application/ purpose"]) == float else str(
+                            d["Tested application/ purpose"]),
+                        "mutationalanalysis": "" if type(d["Mutational Analysis"]) == float else str(
+                            d["Mutational Analysis"]),
+                        "minamersyesno": "" if type(d["Minamers  (yes/no)"]) == float else str(d["Minamers  (yes/no)"]),
+                        "minimeronesequence": "n/a" if str(d["Minimer 1 sequence"]) == "nan" else str(
+                            d["Minimer 1 sequence"]),
+                        "minimeronekd": "n/a" if str(d["Minimer 1 Kd"]) == "nan" else str(d["Minimer 1 Kd"]),
+                        "minimertwosequence": "n/a" if str(d["Minimer 2 sequence"]) == "nan" else str(
+                            d["Minimer 2 sequence"]),
+                        "minimertwokd": "n/a" if str(d["Minimer 2 Kd"]) == "nan" else str(d["Minimer 2 Kd"]),
+                        "minimerthreesequence": "n/a" if str(d["Minimer 3 sequence"]) == "nan" else str(
+                            d["Minimer 3 sequence"]),
+                        "minimerthreekd": "n/a" if str(d["Minimer 3 Kd"]) == "nan" else str(d["Minimer 3 Kd"]),
+                        "notes": "" if type(d["Notes"]) == float else str(d["Notes"]),
                         "status": "Approved",
                         "operator": user_provider.get_authenticated_user().name
                     }
 
                     articles = Article(article)
                     db.session.add(articles)
-            db.session.commit()
+                    db.session.commit()
             response = Response(json.dumps({"success": True}), 200, mimetype="application/json")
         else:
             error = {"message": "Access Denied"}

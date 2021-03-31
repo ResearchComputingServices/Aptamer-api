@@ -90,7 +90,7 @@ def update_temp_article():
             data = request.get_json()
             temp_article = TempArticle.query.filter_by(id=data.get('id')).first()
             if not temp_article:
-                temp_article = TempArticle.query.filter_by(name=data.get('name')).first()
+                temp_article = TempArticle.query.filter_by(pubmedid=data.get('pubmedid')).first()
             if temp_article:
                 if data.get('id') is None:
                     data['id'] = temp_article.id
@@ -124,7 +124,7 @@ def delete_temp_article():
             data = request.get_json()
             temp_article = TempArticle.query.filter_by(id=data.get('id')).first()
             if not temp_article:
-                temp_article = TempArticle.query.filter_by(name=data.get('name')).first()
+                temp_article = TempArticle.query.filter_by(pubmedid=data.get('pubmedid')).first()
             if temp_article:
                 db.session.delete(temp_article)
                 db.session.commit()
@@ -150,29 +150,80 @@ def upload_temp_articles():
     try:
         for _, row in data.iterrows():
             d = dict(row)
-            if type(d["Title"]) == str:
+            #print(d)
+            #print(type(d["PubMed ID"]))
+            if type(d["PubMed ID"]) == int:
                 temp_article = {
                     "id": provider.generate_id(field=TempArticle.id),
-                    "name": str(d["Title"]),
-                    "source_type": "" if type(d["Source Type"]) == float else str(d["Source Type"]),
-                    "title_of_chapter_article": "" if type(d["Title of chapter, article"]) == float else str(
-                        d["Title of chapter, article"]),
-                    "page_range": "" if type(d["Page range (chapter, article)"]) == float else str(
-                        d["Page range (chapter, article)"]),
-                    "author_of_book": "" if type(d["Author of book"]) == float else str(d["Author of book"]),
-                    "author_of_chapter_article": "" if type(d["Author of Chapter, article"]) else str(
-                        d["Author of Chapter, article"]),
-                    "publisher": "" if type(d["Publisher"]) == float else str(d["Publisher"]),
-                    "place_of_publication": "" if type(d["Place of publication"]) == float else str(
-                        d["Place of publication"]),
-                    "year": "" if type(d["Year"]) == float else str(d["Year"]),
-                    "language": "" if type(d["Language"]) == float else str(d["Language"]),
-                    "variety_studied": "" if type(d["Variety studied"]) == float else str(d["Variety studied"]),
-                    "language_feature_studied": "" if type(d["Language feature studied"]) else str(
-                        d["Language feature studied"]),
-                    "region_field": "" if type(d["Region field"]) == float else str(d["Region field"]),
-                    "other_keywords": "" if type(d["Other Keywords"]) == float else str(d["Other Keywords"]),
-                    "source": "" if type(d["Source"]) == float else str(d["Source"]),
+                    "name": "",
+                    "pubmedid": "" if type(d["PubMed ID"]) == float else str(d["PubMed ID"]),
+                    "doinumber": "" if type(d["DOI number"]) == float else str(d["DOI number"]),
+                    "yearofpublication": "" if type(d["Year of publication"]) == float else str(
+                        d["Year of publication"]),
+                    "aptamertargettype": "" if type(d["Aptamer Target Type"]) == float else str(
+                        d["Aptamer Target Type"]),
+                    "aptamertargetname": "" if type(d["Aptamer Target Name"]) == float else str(
+                        d["Aptamer Target Name"]),
+                    "aptamersequence": "" if type(d["Aptamer Sequence"]) == float else str(d["Aptamer Sequence"]),
+                    # "aptamersequence": "CATCCATGGG",
+                    "templatesequence": "" if type(d[
+                                                       "Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA"]) == float else str(
+                        d["Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA"]),
+                    "lengthofrandomregion": "" if str(d["Length of random region"]) == 'nan' else str(
+                        d["Length of random region"]),
+                    "templatebias": "" if type(d["Template Bias"]) == float else str(d["Template Bias"]),
+                    "selexmethod": "" if type(d["SELEX Method"]) == float else str(d["SELEX Method"]),
+                    "numberofselectionrounds": "" if str(d["Number of Selection Rounds"]) == "nan" else str(
+                        d["Number of Selection Rounds"]),
+                    "separationpartitioningmethod": "" if type(
+                        d["Separation (Partitioning) Method"]) == float else str(
+                        d["Separation (Partitioning) Method"]),
+                    "elutionrecoverymethod": "" if type(d["Elution/Recovery method"]) == float else str(
+                        d["Elution/Recovery method"]),
+                    "selectionsolutionbufferingagent": "" if type(
+                        d["Selection Solution Buffering Agent"]) == float else str(
+                        d["Selection Solution Buffering Agent"]),
+                    "selectionsolutionph": "" if str(d["Selection Solution pH"]) == "nan" else str(
+                        round(d["Selection Solution pH"], 1)),
+                    "selectionsolutiontemperature": "" if str(
+                        d["Selection Solution Temperature °C"]) == "nan" else str(
+                        d["Selection Solution Temperature °C"]),
+                    "concentrationkm": "" if str(d["Concentration K (M)"]) == "nan" else str(
+                        d["Concentration K (M)"]),
+                    "concentrationmgm": "" if str(d["Concentration Mg (M)"]) == "nan" else str(
+                        d["Concentration Mg (M)"]),
+                    "concentrationnam": "" if str(d["Concentration Na (M)"]) == "nan" else str(
+                        d["Concentration Na (M)"]),
+                    "concentrationznm": "" if str(d["Concentration Zn (M)"]) == "nan" else str(
+                        d["Concentration Zn (M)"]),
+                    "concentrationcam": "" if str(d["Concentration Ca (M)"]) == "nan" else str(
+                        d["Concentration Ca (M)"]),
+                    "concentrationotherm": "" if str(d["Concentration Other (M)"]) == "nan" else str(
+                        d["Concentration Other (M)"]),
+                    "affinitymethod": "" if type(d["Affinity Method"]) == float else str(d["Affinity Method"]),
+                    "affinitymethodconditions": "" if type(d["Affinity Method Conditions"]) == float else str(
+                        d["Affinity Method Conditions"]),
+                    "aptamertype": "" if type(d["Aptamer Type"]) == float else str(d["Aptamer Type"]),
+                    "othermodification": "" if type(d["Other modification"]) == float else str(
+                        d["Other modification"]),
+                    "kdvalueinmolar": "" if str(d["KD Value (in Molar)"]) == "nan" else str(
+                        d["KD Value (in Molar)"]),
+                    "kderror": "" if str(d["KD Error"]) == "nan" else str(d["KD Error"]),
+                    "testedapplicationpurpose": "" if type(d["Tested application/ purpose"]) == float else str(
+                        d["Tested application/ purpose"]),
+                    "mutationalanalysis": "" if type(d["Mutational Analysis"]) == float else str(
+                        d["Mutational Analysis"]),
+                    "minamersyesno": "" if type(d["Minamers  (yes/no)"]) == float else str(d["Minamers  (yes/no)"]),
+                    "minimeronesequence": "n/a" if str(d["Minimer 1 sequence"]) == "nan" else str(
+                        d["Minimer 1 sequence"]),
+                    "minimeronekd": "n/a" if str(d["Minimer 1 Kd"]) == "nan" else str(d["Minimer 1 Kd"]),
+                    "minimertwosequence": "n/a" if str(d["Minimer 2 sequence"]) == "nan" else str(
+                        d["Minimer 2 sequence"]),
+                    "minimertwokd": "n/a" if str(d["Minimer 2 Kd"]) == "nan" else str(d["Minimer 2 Kd"]),
+                    "minimerthreesequence": "n/a" if str(d["Minimer 3 sequence"]) == "nan" else str(
+                        d["Minimer 3 sequence"]),
+                    "minimerthreekd": "n/a" if str(d["Minimer 3 Kd"]) == "nan" else str(d["Minimer 3 Kd"]),
+                    "notes": "" if type(d["Notes"]) == float else str(d["Notes"]),
                     "status": "Pending",
                     "operator": user_provider.get_authenticated_user().name
                 }
@@ -199,7 +250,7 @@ def decline_temp_article():
             data = request.get_json()
             temp_article = TempArticle.query.filter_by(id=data.get('id')).first()
             if not temp_article:
-                temp_article = TempArticle.query.filter_by(name=data.get('name')).first()
+                temp_article = TempArticle.query.filter_by(pubmedid=data.get('pubmedid')).first()
             if temp_article:
                 if data.get('id') is None:
                     data['id'] = temp_article.id
@@ -248,7 +299,7 @@ def approve_temp_article():
 def update_status_to_approve_temp_article(data):
     temp_article = TempArticle.query.filter_by(id=data.get('id')).first()
     if not temp_article:
-        temp_article = TempArticle.query.filter_by(name=data.get('name')).first()
+        temp_article = TempArticle.query.filter_by(pubmedid=data.get('pubmedid')).first()
     if temp_article:
         if data.get('id') is None:
             data['id'] = temp_article.id
@@ -264,21 +315,44 @@ def export_temp_articles():
     try:
         specific_users_info = [{
             # "ID": s_a.id,
-            "Source Type": "",
-            "Title": "",
-            "Title of chapter, article": "",
-            "Page range (chapter, article)": "",
-            "Author of book": "",
-            "Author of Chapter, article": "",
-            "Publisher": "",
-            "Place of publication": "",
-            "Year": "",
-            "Language": "",
-            "Variety studied": "",
-            "Language feature studied": "",
-            "Region field": "",
-            "Other Keywords": "",
-            "Source": ""
+            "PubMed ID": "",
+            "DOI number": "",
+            "Year of publication": "",
+            "Aptamer Target Type": "",
+            "Aptamer Target Name": "",
+            "Aptamer Sequence": "",
+            "Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA": "",
+            "Length of random region": "",
+            "Template Bias": "",
+            "SELEX Method": "",
+            "Number of Selection Rounds": "",
+            "Separation (Partitioning) Method": "",
+            "Elution/Recovery method": "",
+            "Selection Solution Buffering Agent": "",
+            "Selection Solution pH": "",
+            "Selection Solution Temperature °C": "",
+            "Concentration K (M)": "",
+            "Concentration Mg (M)": "",
+            "Concentration Na (M)": "",
+            "Concentration Zn (M)": "",
+            "Concentration Ca (M)": "",
+            "Concentration Other (M)": "",
+            "Affinity Method": "",
+            "Affinity Method Conditions": "",
+            "Aptamer Type": "",
+            "Other modification": "",
+            "KD Value (in Molar)": "",
+            "KD Error": "",
+            "Tested application/ purpose": "",
+            "Mutational Analysis": "",
+            "Minamers  (yes/no)": "",
+            "Minimer 1 sequence": "",
+            "Minimer 1 Kd": "",
+            "Minimer 2 sequence": "",
+            "Minimer 2 Kd": "",
+            "Minimer 3 sequence": "",
+            "Minimer 3 Kd": "",
+            "Notes": ""
         }]
         output = BytesIO()
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
@@ -295,7 +369,7 @@ def export_temp_articles():
             worksheet.set_column('C:C', 22, format)
             worksheet.set_column('D:D', 38, format)
             worksheet.set_column('E:E', 15, format)
-            worksheet.set_column('F:F', 18, format)
+            worksheet.set_column('F:AL', 18, format)
             writer.save()
         output.seek(0)
         return send_file(output,
