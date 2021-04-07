@@ -1,0 +1,1 @@
+from aptamer_api.permissions.permission import *

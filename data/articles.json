@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Test",
+        "pubmedid": "27563422",
+        "doinumber": "",
+        "yearofpublication": "2016",
+        "aptamertargettype": "Cell",
+        "aptamertargetname": "LNCap cells (prostate cancer cells)",
+        "aptamersequence": "CATCCATGGGAAGGCGTCGACGAGATCTTTTTGAATATTCCTCAATGACCCAAAATTCCTGCCTAGGTCGAGCTCG",
+        "templatesequence": "CATCCATGGGATTCGTCGAC-N40-CTGCCTAGGCTCGAG",
+        "lengthofrandomregion": "40",
+        "templatebias": "No",
+        "selexmethod": "Cell-SELEX",
+        "numberofselectionrounds": "10",
+        "separationpartitioningmethod": "Cell washing",
+        "elutionrecoverymethod": "heat",
+        "selectionsolutionbufferingagent": "Phosphate",
+        "selectionsolutionph": "7.4",
+        "selectionsolutiontemperature": "25",
+        "concentrationkm": "0.0041",
+        "concentrationmgm": "0.005",
+        "concentrationnam": "0.154",
+        "concentrationznm": "0",
+        "concentrationcam": "0",
+        "concentrationotherm": "none here, but as an example for Zn you would write: 0.005-M-Zn",
+        "affinitymethod": "Microscale Thermophoresis",
+        "affinitymethodconditions": "Same as selection conditions",
+        "aptamertype": "DNA",
+        "othermodification": "5' end",
+        "kdvalueinmolar": "0.00000000003378",
+
+        "kderror": "0.00000000000377",
+        "testedapplicationpurpose": "None",
+        "mutationalanalysis": "No",
+        "minamersyesno": "No",
+
+        "minimeronesequence": "n/a",
+        "minimeronekd": "n/a",
+        "minimertwosequence": "n/a",
+        "minimertwokd": "n/a",
+        "minimerthreesequence": "n/a",
+        "minimerthreekd": "n/a",
+        "notes": "",
+
+        "status": "Approved"
+    }
+]
