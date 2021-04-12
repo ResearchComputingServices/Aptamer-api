@@ -109,7 +109,7 @@ class TempArticle(db.Model):
 
 
 
-class TempArticleSchema(ma.ModelSchema):
+class TempArticleSchema(ma.SQLAlchemySchema):
     class Meta:
         model = TempArticle
 
