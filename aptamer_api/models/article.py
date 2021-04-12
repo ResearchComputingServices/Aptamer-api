@@ -105,7 +105,7 @@ class Article(db.Model):
 
 
 
-class ArticleSchema(ma.ModelSchema):
+class ArticleSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Article
 
