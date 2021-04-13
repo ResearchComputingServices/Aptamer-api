@@ -152,11 +152,11 @@ def upload_temp_articles():
             d = dict(row)
             #print(d)
             #print(type(d["PubMed ID"]))
-            if type(d["PubMed ID"]) == int:
+            if type(d["PubMed ID"]) == int or type(d["Year of publication"]) == int:
                 temp_article = {
                     "id": provider.generate_id(field=TempArticle.id),
                     "name": "",
-                    "pubmedid": "" if type(d["PubMed ID"]) == float else str(d["PubMed ID"]),
+                    "pubmedid": "" if str(d["PubMed ID"]) == "nan" else str(int(d["PubMed ID"])),
                     "doinumber": "" if type(d["DOI number"]) == float else str(d["DOI number"]),
                     "yearofpublication": "" if type(d["Year of publication"]) == float else str(
                         d["Year of publication"]),

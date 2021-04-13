@@ -31,21 +31,50 @@ def get_article_count():
 def get_article():
     try:
         id = request.args.get('id')
-        name = request.args.get('name')
+
+        #name = request.args.get('name')
+
         pubmedid = request.args.get('pubmedid')
-        doinumber = request.args.get('doinumber')
-        aptamertargettype = request.args.get('aptamertargettype')
-        aptamertargetname = request.args.get('aptamertargetname')
-        aptamersequence = request.args.get('aptamersequence')
-        lengthofrandomregion = request.args.get('lengthofrandomregion')
-        templatesequence = request.args.get('templatesequence')
-        yearofpublication = request.args.get('yearofpublication')
-        templatebias = request.args.get('templatebias')
-        selexmethod = request.args.get('selexmethod')
-        numberofselectionrounds = request.args.get('numberofselectionrounds')
-        separationpartitioningmethod = request.args.get('separationpartitioningmethod')
-        elutionrecoverymethod = request.args.get('elutionrecoverymethod')
-        selectionsolutionbufferingagent = request.args.get('selectionsolutionbufferingagent')
+        doinumber= request.args.get('doinumber')
+        yearofpublication= request.args.get('yearofpublication')
+        aptamertargettype= request.args.get('aptamertargettype')
+        aptamertargetname= request.args.get('aptamertargetname')
+        aptamersequence= request.args.get('aptamersequence')
+        templatesequence= request.args.get('templatesequence')
+        lengthofrandomregion= request.args.get('lengthofrandomregion')
+        templatebias= request.args.get('templatebias')
+        selexmethod= request.args.get('selexmethod')
+        numberofselectionrounds= request.args.get('numberofselectionrounds')
+        separationpartitioningmethod= request.args.get('separationpartitioningmethod')
+        elutionrecoverymethod= request.args.get('elutionrecoverymethod')
+        selectionsolutionbufferingagent= request.args.get('selectionsolutionbufferingagent')
+
+        selectionsolutionph= request.args.get('selectionsolutionph')
+        selectionsolutiontemperature= request.args.get('selectionsolutiontemperature')
+        concentrationkm= request.args.get('concentrationkm')
+        concentrationmgm= request.args.get('concentrationmgm')
+        concentrationnam= request.args.get('concentrationnam')
+        concentrationznm= request.args.get('concentrationznm')
+        concentrationcam= request.args.get('concentrationcam')
+        concentrationotherm= request.args.get('concentrationotherm')
+        affinitymethod= request.args.get('affinitymethod')
+        affinitymethodconditions= request.args.get('affinitymethodconditions')
+        aptamertype= request.args.get('aptamertype')
+        othermodification= request.args.get('othermodification')
+        kdvalueinmolar= request.args.get('kdvalueinmolar')
+
+        kderror= request.args.get('kderror')
+        testedapplicationpurpose= request.args.get('testedapplicationpurpose')
+        mutationalanalysis= request.args.get('mutationalanalysis')
+        minamersyesno= request.args.get('minamersyesno')
+
+        minimeronesequence= request.args.get('minimeronesequence')
+        minimeronekd= request.args.get('minimeronekd')
+        minimertwosequence= request.args.get('minimertwosequence')
+        minimertwokd= request.args.get('minimertwokd')
+        minimerthreesequence= request.args.get('minimerthreesequence')
+        minimerthreekd= request.args.get('minimerthreekd')
+        notes= request.args.get('notes')
 
         properties = provider.query_all(Article)
 
@@ -56,13 +85,13 @@ def get_article():
 
         result_list = []
 
-        if name:
-            name = name.lower()
-            name_ids = []
-            for res_name in properties:
-                if name in res_name.name.lower():
-                    name_ids.append(res_name.id)
-            result_list.append(name_ids)
+        #if name:
+            #name = name.lower()
+            #name_ids = []
+            #for res_name in properties:
+                #if name in res_name.name.lower():
+                    #name_ids.append(res_name.id)
+            #result_list.append(name_ids)
 
         if pubmedid:
             pubmedid = pubmedid.lower()
@@ -132,9 +161,9 @@ def get_article():
 
         if yearofpublication:
             yearofpublication_ids = []
-            for res_year in properties:
-                if yearofpublication in res_year.year:
-                    yearofpublication_ids.append(res_year.id)
+            for res_yearofpublication in properties:
+                if yearofpublication in res_yearofpublication.yearofpublication:
+                    yearofpublication_ids.append(res_yearofpublication.id)
             result_list.append(yearofpublication_ids)
 
         if templatebias:
@@ -177,6 +206,199 @@ def get_article():
                     selectionsolutionbufferingagent_ids.append(res_selectionsolutionbufferingagent.id)
             result_list.append(selectionsolutionbufferingagent_ids)
 
+        if selectionsolutionph:
+            selectionsolutionph = selectionsolutionph.lower()
+            selectionsolutionph_ids = []
+            for res_selectionsolutionph in properties:
+                if selectionsolutionph in res_selectionsolutionph.selectionsolutionph.lower():
+                    selectionsolutionph_ids.append(res_selectionsolutionph.id)
+            result_list.append(selectionsolutionph_ids)
+
+        if selectionsolutiontemperature:
+            selectionsolutiontemperature = selectionsolutiontemperature.lower()
+            selectionsolutiontemperature_ids = []
+            for res_selectionsolutiontemperature in properties:
+                if selectionsolutiontemperature in res_selectionsolutiontemperature.selectionsolutiontemperature.lower():
+                    selectionsolutiontemperature_ids.append(res_selectionsolutiontemperature.id)
+            result_list.append(selectionsolutiontemperature_ids)
+
+        if concentrationkm:
+            concentrationkm = concentrationkm.lower()
+            concentrationkm_ids = []
+            for res_concentrationkm in properties:
+                if concentrationkm in res_concentrationkm.concentrationkm.lower():
+                    concentrationkm_ids.append(res_concentrationkm.id)
+            result_list.append(concentrationkm_ids)
+
+        if concentrationmgm:
+            concentrationmgm = concentrationmgm.lower()
+            concentrationmgm_ids = []
+            for res_concentrationmgm in properties:
+                if concentrationmgm in res_concentrationmgm.concentrationmgm.lower():
+                    concentrationmgm_ids.append(res_concentrationmgm.id)
+            result_list.append(concentrationmgm_ids)
+
+        if concentrationnam:
+            concentrationnam = concentrationnam.lower()
+            concentrationnam_ids = []
+            for res_concentrationnam in properties:
+                if concentrationnam in res_concentrationnam.concentrationnam.lower():
+                    concentrationnam_ids.append(res_concentrationnam.id)
+            result_list.append(concentrationnam_ids)
+
+        if concentrationznm:
+            concentrationznm = concentrationznm.lower()
+            concentrationznm_ids = []
+            for res_concentrationznm in properties:
+                if concentrationznm in res_concentrationznm.concentrationznm.lower():
+                    concentrationznm_ids.append(res_concentrationznm.id)
+            result_list.append(concentrationznm_ids)
+
+        if concentrationcam:
+            concentrationcam = concentrationcam.lower()
+            concentrationcam_ids = []
+            for res_concentrationcam in properties:
+                if concentrationcam in res_concentrationcam.concentrationcam.lower():
+                    concentrationcam_ids.append(res_concentrationcam.id)
+            result_list.append(concentrationcam_ids)
+
+        if concentrationotherm:
+            concentrationotherm = concentrationotherm.lower()
+            concentrationotherm_ids = []
+            for res_concentrationotherm in properties:
+                if concentrationotherm in res_concentrationotherm.concentrationotherm.lower():
+                    concentrationotherm_ids.append(res_concentrationotherm.id)
+            result_list.append(concentrationotherm_ids)
+
+        if affinitymethod:
+            affinitymethod = affinitymethod.lower()
+            affinitymethod_ids = []
+            for res_affinitymethod in properties:
+                if affinitymethod in res_affinitymethod.affinitymethod.lower():
+                    affinitymethod_ids.append(res_affinitymethod.id)
+            result_list.append(affinitymethod_ids)
+
+        if affinitymethodconditions:
+            affinitymethodconditions = affinitymethodconditions.lower()
+            affinitymethodconditions_ids = []
+            for res_affinitymethodconditions in properties:
+                if affinitymethodconditions in res_affinitymethodconditions.affinitymethodconditions.lower():
+                    affinitymethodconditions_ids.append(res_affinitymethodconditions.id)
+            result_list.append(affinitymethodconditions_ids)
+
+        if aptamertype:
+            aptamertype = aptamertype.lower()
+            aptamertype_ids = []
+            for res_aptamertype in properties:
+                if aptamertype in res_aptamertype.aptamertype.lower():
+                    aptamertype_ids.append(res_aptamertype.id)
+            result_list.append(aptamertype_ids)
+
+        if othermodification:
+            othermodification = othermodification.lower()
+            othermodification_ids = []
+            for res_othermodification in properties:
+                if othermodification in res_othermodification.othermodification.lower():
+                    othermodification_ids.append(res_othermodification.id)
+            result_list.append(othermodification_ids)
+
+        if kdvalueinmolar:
+            kdvalueinmolar = kdvalueinmolar.lower()
+            kdvalueinmolar_ids = []
+            for res_kdvalueinmolar in properties:
+                if kdvalueinmolar in res_kdvalueinmolar.kdvalueinmolar.lower():
+                    kdvalueinmolar_ids.append(res_kdvalueinmolar.id)
+            result_list.append(kdvalueinmolar_ids)
+
+        if kderror:
+            kderror = kderror.lower()
+            kderror_ids = []
+            for res_kderror in properties:
+                if kderror in res_kderror.kderror.lower():
+                    kderror_ids.append(res_kderror.id)
+            result_list.append(kderror_ids)
+
+        if testedapplicationpurpose:
+            testedapplicationpurpose = testedapplicationpurpose.lower()
+            testedapplicationpurpose_ids = []
+            for res_testedapplicationpurpose in properties:
+                if testedapplicationpurpose in res_testedapplicationpurpose.testedapplicationpurpose.lower():
+                    testedapplicationpurpose_ids.append(res_testedapplicationpurpose.id)
+            result_list.append(testedapplicationpurpose_ids)
+
+        if mutationalanalysis:
+            mutationalanalysis = mutationalanalysis.lower()
+            mutationalanalysis_ids = []
+            for res_mutationalanalysis in properties:
+                if mutationalanalysis in res_mutationalanalysis.mutationalanalysis.lower():
+                    mutationalanalysis_ids.append(res_mutationalanalysis.id)
+            result_list.append(mutationalanalysis_ids)
+
+        if minamersyesno:
+            minamersyesno = minamersyesno.lower()
+            minamersyesno_ids = []
+            for res_minamersyesno in properties:
+                if minamersyesno in res_minamersyesno.minamersyesno.lower():
+                    minamersyesno_ids.append(res_minamersyesno.id)
+            result_list.append(minamersyesno_ids)
+
+        if minimeronesequence:
+            minimeronesequence = minimeronesequence.lower()
+            minimeronesequence_ids = []
+            for res_minimeronesequence in properties:
+                if minimeronesequence in res_minimeronesequence.minimeronesequence.lower():
+                    minimeronesequence_ids.append(res_minimeronesequence.id)
+            result_list.append(minimeronesequence_ids)
+
+        if minimeronekd:
+            minimeronekd = minimeronekd.lower()
+            minimeronekd_ids = []
+            for res_minimeronekd in properties:
+                if minimeronekd in res_minimeronekd.minimeronekd.lower():
+                    minimeronekd_ids.append(res_minimeronekd.id)
+            result_list.append(minimeronekd_ids)
+
+        if minimertwosequence:
+            minimertwosequence = minimertwosequence.lower()
+            minimertwosequence_ids = []
+            for res_minimertwosequence in properties:
+                if minimertwosequence in res_minimertwosequence.minimertwosequence.lower():
+                    minimertwosequence_ids.append(res_minimertwosequence.id)
+            result_list.append(minimertwosequence_ids)
+
+        if minimertwokd:
+            minimertwokd = minimertwokd.lower()
+            minimertwokd_ids = []
+            for res_minimertwokd in properties:
+                if minimertwokd in res_minimertwokd.minimertwokd.lower():
+                    minimertwokd_ids.append(res_minimertwokd.id)
+            result_list.append(minimertwokd_ids)
+
+        if minimerthreesequence:
+            minimerthreesequence = minimerthreesequence.lower()
+            minimerthreesequence_ids = []
+            for res_minimerthreesequence in properties:
+                if minimerthreesequence in res_minimerthreesequence.minimerthreesequence.lower():
+                    minimerthreesequence_ids.append(res_minimerthreesequence.id)
+            result_list.append(minimerthreesequence_ids)
+
+        if minimerthreekd:
+            minimerthreekd = minimerthreekd.lower()
+            minimerthreekd_ids = []
+            for res_minimerthreekd in properties:
+                if minimerthreekd in res_minimerthreekd.minimerthreekd.lower():
+                    minimerthreekd_ids.append(res_minimerthreekd.id)
+            result_list.append(minimerthreekd_ids)
+
+        if notes:
+            notes = notes.lower()
+            notes_ids = []
+            for res_notes in properties:
+                if notes in res_notes.notes.lower():
+                    notes_ids.append(res_notes.id)
+            result_list.append(notes_ids)
+
+
         if len(result_list) > 2:
             intersection_fields_result_list = list(set(result_list[0]).intersection(set(result_list[1])))
             for i in range(2, len(result_list)):
@@ -187,6 +409,7 @@ def get_article():
             intersection_fields_result_list = result_list[0]
         else:
             result = article_schema_many.dump(properties)
+            #result = None
             return jsonify(result)
         result = []
         for specific_id in intersection_fields_result_list:
@@ -291,22 +514,49 @@ def delete_article():
 def export_articles():
     try:
         id = request.args.get('id')
-        name = request.args.get('name')
+        #name = request.args.get('name')
 
         pubmedid = request.args.get('pubmedid')
-        doinumber = request.args.get('doinumber')
-        aptamertargettype = request.args.get('aptamertargettype')
-        aptamertargetname = request.args.get('aptamertargetname')
-        aptamersequence = request.args.get('aptamersequence')
-        lengthofrandomregion = request.args.get('lengthofrandomregion')
-        templatesequence = request.args.get('templatesequence')
-        yearofpublication = request.args.get('yearofpublication')
-        templatebias = request.args.get('templatebias')
-        selexmethod = request.args.get('selexmethod')
-        numberofselectionrounds = request.args.get('numberofselectionrounds')
-        separationpartitioningmethod = request.args.get('separationpartitioningmethod')
-        elutionrecoverymethod = request.args.get('elutionrecoverymethod')
-        selectionsolutionbufferingagent = request.args.get('selectionsolutionbufferingagent')
+        doinumber= request.args.get('doinumber')
+        yearofpublication= request.args.get('yearofpublication')
+        aptamertargettype= request.args.get('aptamertargettype')
+        aptamertargetname= request.args.get('aptamertargetname')
+        aptamersequence= request.args.get('aptamersequence')
+        templatesequence= request.args.get('templatesequence')
+        lengthofrandomregion= request.args.get('lengthofrandomregion')
+        templatebias= request.args.get('templatebias')
+        selexmethod= request.args.get('selexmethod')
+        numberofselectionrounds= request.args.get('numberofselectionrounds')
+        separationpartitioningmethod= request.args.get('separationpartitioningmethod')
+        elutionrecoverymethod= request.args.get('elutionrecoverymethod')
+        selectionsolutionbufferingagent= request.args.get('selectionsolutionbufferingagent')
+
+        selectionsolutionph= request.args.get('selectionsolutionph')
+        selectionsolutiontemperature= request.args.get('selectionsolutiontemperature')
+        concentrationkm= request.args.get('concentrationkm')
+        concentrationmgm= request.args.get('concentrationmgm')
+        concentrationnam= request.args.get('concentrationnam')
+        concentrationznm= request.args.get('concentrationznm')
+        concentrationcam= request.args.get('concentrationcam')
+        concentrationotherm= request.args.get('concentrationotherm')
+        affinitymethod= request.args.get('affinitymethod')
+        affinitymethodconditions= request.args.get('affinitymethodconditions')
+        aptamertype= request.args.get('aptamertype')
+        othermodification= request.args.get('othermodification')
+        kdvalueinmolar= request.args.get('kdvalueinmolar')
+
+        kderror= request.args.get('kderror')
+        testedapplicationpurpose= request.args.get('testedapplicationpurpose')
+        mutationalanalysis= request.args.get('mutationalanalysis')
+        minamersyesno= request.args.get('minamersyesno')
+
+        minimeronesequence= request.args.get('minimeronesequence')
+        minimeronekd= request.args.get('minimeronekd')
+        minimertwosequence= request.args.get('minimertwosequence')
+        minimertwokd= request.args.get('minimertwokd')
+        minimerthreesequence= request.args.get('minimerthreesequence')
+        minimerthreekd= request.args.get('minimerthreekd')
+        notes= request.args.get('notes')
 
         properties = provider.query_all(Article)
 
@@ -316,25 +566,17 @@ def export_articles():
             return jsonify(result)
 
         result_list = []
-
-        if name:
-            name = name.lower()
-            name_ids = []
-            for res_name in properties:
-                if name in res_name.name.lower():
-                    name_ids.append(res_name.id)
-            result_list.append(name_ids)
-
         if pubmedid:
             pubmedid = pubmedid.lower()
             pubmedid_ids = []
             for res_pubmedid in properties:
-                if pubmedid in res_pubmedid.pubmedid.lower():
+                if res_pubmedid.pubmedid is not None and pubmedid in res_pubmedid.pubmedid.lower():
                     pubmedid_ids.append(res_pubmedid.id)
+            # print(pubmedid_ids)
             result_list.append(pubmedid_ids)
 
         if doinumber:
-            #doinumber = doinumber.lower()
+            doinumber = doinumber.lower()
             doinumber_ids = []
             for res_doinumber in properties:
                 if doinumber in res_doinumber.doinumber.lower():
@@ -390,11 +632,11 @@ def export_articles():
             result_list.append(selexmethod_ids)
 
         if yearofpublication:
-            year_ids = []
-            for res_year in properties:
-                if yearofpublication in res_year.yearofpublication:
-                    year_ids.append(res_year.id)
-            result_list.append(year_ids)
+            yearofpublication_ids = []
+            for res_yearofpublication in properties:
+                if yearofpublication in res_yearofpublication.yearofpublication:
+                    yearofpublication_ids.append(res_yearofpublication.id)
+            result_list.append(yearofpublication_ids)
 
         if templatebias:
             templatebias = templatebias.lower()
@@ -435,6 +677,198 @@ def export_articles():
                 if selectionsolutionbufferingagent in res_selectionsolutionbufferingagent.selectionsolutionbufferingagent.lower():
                     selectionsolutionbufferingagent_ids.append(res_selectionsolutionbufferingagent.id)
             result_list.append(selectionsolutionbufferingagent_ids)
+
+        if selectionsolutionph:
+            selectionsolutionph = selectionsolutionph.lower()
+            selectionsolutionph_ids = []
+            for res_selectionsolutionph in properties:
+                if selectionsolutionph in res_selectionsolutionph.selectionsolutionph.lower():
+                    selectionsolutionph_ids.append(res_selectionsolutionph.id)
+            result_list.append(selectionsolutionph_ids)
+
+        if selectionsolutiontemperature:
+            selectionsolutiontemperature = selectionsolutiontemperature.lower()
+            selectionsolutiontemperature_ids = []
+            for res_selectionsolutiontemperature in properties:
+                if selectionsolutiontemperature in res_selectionsolutiontemperature.selectionsolutiontemperature.lower():
+                    selectionsolutiontemperature_ids.append(res_selectionsolutiontemperature.id)
+            result_list.append(selectionsolutiontemperature_ids)
+
+        if concentrationkm:
+            concentrationkm = concentrationkm.lower()
+            concentrationkm_ids = []
+            for res_concentrationkm in properties:
+                if concentrationkm in res_concentrationkm.concentrationkm.lower():
+                    concentrationkm_ids.append(res_concentrationkm.id)
+            result_list.append(concentrationkm_ids)
+
+        if concentrationmgm:
+            concentrationmgm = concentrationmgm.lower()
+            concentrationmgm_ids = []
+            for res_concentrationmgm in properties:
+                if concentrationmgm in res_concentrationmgm.concentrationmgm.lower():
+                    concentrationmgm_ids.append(res_concentrationmgm.id)
+            result_list.append(concentrationmgm_ids)
+
+        if concentrationnam:
+            concentrationnam = concentrationnam.lower()
+            concentrationnam_ids = []
+            for res_concentrationnam in properties:
+                if concentrationnam in res_concentrationnam.concentrationnam.lower():
+                    concentrationnam_ids.append(res_concentrationnam.id)
+            result_list.append(concentrationnam_ids)
+
+        if concentrationznm:
+            concentrationznm = concentrationznm.lower()
+            concentrationznm_ids = []
+            for res_concentrationznm in properties:
+                if concentrationznm in res_concentrationznm.concentrationznm.lower():
+                    concentrationznm_ids.append(res_concentrationznm.id)
+            result_list.append(concentrationznm_ids)
+
+        if concentrationcam:
+            concentrationcam = concentrationcam.lower()
+            concentrationcam_ids = []
+            for res_concentrationcam in properties:
+                if concentrationcam in res_concentrationcam.concentrationcam.lower():
+                    concentrationcam_ids.append(res_concentrationcam.id)
+            result_list.append(concentrationcam_ids)
+
+        if concentrationotherm:
+            concentrationotherm = concentrationotherm.lower()
+            concentrationotherm_ids = []
+            for res_concentrationotherm in properties:
+                if concentrationotherm in res_concentrationotherm.concentrationotherm.lower():
+                    concentrationotherm_ids.append(res_concentrationotherm.id)
+            result_list.append(concentrationotherm_ids)
+
+        if affinitymethod:
+            affinitymethod = affinitymethod.lower()
+            affinitymethod_ids = []
+            for res_affinitymethod in properties:
+                if affinitymethod in res_affinitymethod.affinitymethod.lower():
+                    affinitymethod_ids.append(res_affinitymethod.id)
+            result_list.append(affinitymethod_ids)
+
+        if affinitymethodconditions:
+            affinitymethodconditions = affinitymethodconditions.lower()
+            affinitymethodconditions_ids = []
+            for res_affinitymethodconditions in properties:
+                if affinitymethodconditions in res_affinitymethodconditions.affinitymethodconditions.lower():
+                    affinitymethodconditions_ids.append(res_affinitymethodconditions.id)
+            result_list.append(affinitymethodconditions_ids)
+
+        if aptamertype:
+            aptamertype = aptamertype.lower()
+            aptamertype_ids = []
+            for res_aptamertype in properties:
+                if aptamertype in res_aptamertype.aptamertype.lower():
+                    aptamertype_ids.append(res_aptamertype.id)
+            result_list.append(aptamertype_ids)
+
+        if othermodification:
+            othermodification = othermodification.lower()
+            othermodification_ids = []
+            for res_othermodification in properties:
+                if othermodification in res_othermodification.othermodification.lower():
+                    othermodification_ids.append(res_othermodification.id)
+            result_list.append(othermodification_ids)
+
+        if kdvalueinmolar:
+            kdvalueinmolar = kdvalueinmolar.lower()
+            kdvalueinmolar_ids = []
+            for res_kdvalueinmolar in properties:
+                if kdvalueinmolar in res_kdvalueinmolar.kdvalueinmolar.lower():
+                    kdvalueinmolar_ids.append(res_kdvalueinmolar.id)
+            result_list.append(kdvalueinmolar_ids)
+
+        if kderror:
+            kderror = kderror.lower()
+            kderror_ids = []
+            for res_kderror in properties:
+                if kderror in res_kderror.kderror.lower():
+                    kderror_ids.append(res_kderror.id)
+            result_list.append(kderror_ids)
+
+        if testedapplicationpurpose:
+            testedapplicationpurpose = testedapplicationpurpose.lower()
+            testedapplicationpurpose_ids = []
+            for res_testedapplicationpurpose in properties:
+                if testedapplicationpurpose in res_testedapplicationpurpose.testedapplicationpurpose.lower():
+                    testedapplicationpurpose_ids.append(res_testedapplicationpurpose.id)
+            result_list.append(testedapplicationpurpose_ids)
+
+        if mutationalanalysis:
+            mutationalanalysis = mutationalanalysis.lower()
+            mutationalanalysis_ids = []
+            for res_mutationalanalysis in properties:
+                if mutationalanalysis in res_mutationalanalysis.mutationalanalysis.lower():
+                    mutationalanalysis_ids.append(res_mutationalanalysis.id)
+            result_list.append(mutationalanalysis_ids)
+
+        if minamersyesno:
+            minamersyesno = minamersyesno.lower()
+            minamersyesno_ids = []
+            for res_minamersyesno in properties:
+                if minamersyesno in res_minamersyesno.minamersyesno.lower():
+                    minamersyesno_ids.append(res_minamersyesno.id)
+            result_list.append(minamersyesno_ids)
+
+        if minimeronesequence:
+            minimeronesequence = minimeronesequence.lower()
+            minimeronesequence_ids = []
+            for res_minimeronesequence in properties:
+                if minimeronesequence in res_minimeronesequence.minimeronesequence.lower():
+                    minimeronesequence_ids.append(res_minimeronesequence.id)
+            result_list.append(minimeronesequence_ids)
+
+        if minimeronekd:
+            minimeronekd = minimeronekd.lower()
+            minimeronekd_ids = []
+            for res_minimeronekd in properties:
+                if minimeronekd in res_minimeronekd.minimeronekd.lower():
+                    minimeronekd_ids.append(res_minimeronekd.id)
+            result_list.append(minimeronekd_ids)
+
+        if minimertwosequence:
+            minimertwosequence = minimertwosequence.lower()
+            minimertwosequence_ids = []
+            for res_minimertwosequence in properties:
+                if minimertwosequence in res_minimertwosequence.minimertwosequence.lower():
+                    minimertwosequence_ids.append(res_minimertwosequence.id)
+            result_list.append(minimertwosequence_ids)
+
+        if minimertwokd:
+            minimertwokd = minimertwokd.lower()
+            minimertwokd_ids = []
+            for res_minimertwokd in properties:
+                if minimertwokd in res_minimertwokd.minimertwokd.lower():
+                    minimertwokd_ids.append(res_minimertwokd.id)
+            result_list.append(minimertwokd_ids)
+
+        if minimerthreesequence:
+            minimerthreesequence = minimerthreesequence.lower()
+            minimerthreesequence_ids = []
+            for res_minimerthreesequence in properties:
+                if minimerthreesequence in res_minimerthreesequence.minimerthreesequence.lower():
+                    minimerthreesequence_ids.append(res_minimerthreesequence.id)
+            result_list.append(minimerthreesequence_ids)
+
+        if minimerthreekd:
+            minimerthreekd = minimerthreekd.lower()
+            minimerthreekd_ids = []
+            for res_minimerthreekd in properties:
+                if minimerthreekd in res_minimerthreekd.minimerthreekd.lower():
+                    minimerthreekd_ids.append(res_minimerthreekd.id)
+            result_list.append(minimerthreekd_ids)
+
+        if notes:
+            notes = notes.lower()
+            notes_ids = []
+            for res_notes in properties:
+                if notes in res_notes.notes.lower():
+                    notes_ids.append(res_notes.id)
+            result_list.append(notes_ids)
 
         if len(result_list) > 2:
             intersection_fields_result_list = list(set(result_list[0]).intersection(set(result_list[1])))
@@ -509,7 +943,7 @@ def export_articles():
             worksheet.set_column('C:C', 22, format)
             worksheet.set_column('D:D', 38, format)
             worksheet.set_column('E:E', 15, format)
-            worksheet.set_column('F:F', 18, format)
+            worksheet.set_column('F:AL', 18, format)
             writer.save()
         output.seek(0)
         return send_file(output,
@@ -568,11 +1002,11 @@ def upload_articles():
             for _, row in data.iterrows():
                 d = dict(row)
                 #print(d)
-                if type(d["PubMed ID"]) == int:
+                if type(d["PubMed ID"]) == int or type(d["Year of publication"]) == int:
                     article = {
                         "id": provider.generate_id(field=Article.id),
                         "name": "test",
-                        "pubmedid": "" if type(d["PubMed ID"]) == float else str(d["PubMed ID"]),
+                        "pubmedid": "" if str(d["PubMed ID"]) == "nan" else str(int(d["PubMed ID"])),
                         "doinumber": "" if type(d["DOI number"]) == float else str(d["DOI number"]),
                         "yearofpublication": "" if type(d["Year of publication"]) == float else str(
                             d["Year of publication"]),

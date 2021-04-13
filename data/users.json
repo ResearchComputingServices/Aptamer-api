@@ -139,5 +139,16 @@
             }
         ],
         "fields": []
+    },
+    {
+        "name": "mariaderosa",
+        "first_name": "Maria",
+        "last_name": "DeRosa",
+        "roles": [
+            {
+                "name": "Administrator"
+            }
+        ],
+        "fields": []
     }
 ]
