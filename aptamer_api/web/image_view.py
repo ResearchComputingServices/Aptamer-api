@@ -1,5 +1,5 @@
 from flask import request, json, Response
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import os
 from aptamer_api.web.common_view import aptamer_bp
 from aptamer_api.decorators.crossorigin import crossdomain
