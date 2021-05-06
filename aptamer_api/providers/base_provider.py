@@ -41,6 +41,32 @@ class BaseProvider():
 
         return result
 
+    def query_all_pending(self, field):
+        query = field.query.filter_by(status="Pending")
+        limit = request.args.get('limit')
+        offset = request.args.get('offset')
+
+        #default values
+        column = 'id'
+        order = 'asc'
+
+        if 'column' in request.args:
+            column = request.args.get('column')
+
+        if 'order' in request.args:
+            order = request.args.get('order')
+
+        p = column + ' ' + order
+
+        query = query.order_by(text(p))
+        if limit:
+            query = query.limit(limit)
+        if offset:
+            query = query.offset(offset)
+        result = query.all()
+
+        return result
+
     def query_all_by_subquery_original(self, query):
         limit = request.args.get('limit')
         offset = request.args.get('offset')

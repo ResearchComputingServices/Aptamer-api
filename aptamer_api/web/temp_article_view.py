@@ -48,7 +48,7 @@ def get_temp_article():
                 result = temp_article_schema.dump(properties)
                 return jsonify(result)
             else:
-                properties = TempArticle.query.filter_by(status="Pending").all()
+                properties = provider.query_all_pending(TempArticle)
                 result = temp_article_schema_many.dump(properties)
                 response = jsonify(result)
         else:
