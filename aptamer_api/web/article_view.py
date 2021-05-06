@@ -1001,7 +1001,6 @@ def upload_articles():
         if is_researcher_administrator:
             for _, row in data.iterrows():
                 d = dict(row)
-                #print(d)
                 if type(d["PubMed ID"]) == int or type(d["Year of publication"]) == int:
                     article = {
                         "id": provider.generate_id(field=Article.id),
