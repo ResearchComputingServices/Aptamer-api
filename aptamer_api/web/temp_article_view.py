@@ -296,9 +296,8 @@ def approve_temp_article():
 def update_status_to_approve_temp_article(data):
     temp_article = TempArticle.query.filter_by(id=data.get('id')).first()
     if not temp_article:
-        temp_article = TempArticle.query.filter_by(name=data.get('name')).first()
+        temp_article = TempArticle.query.filter_by(pubmedid=data.get('pubmedid')).first()
     if temp_article:
-        print("here")
         if data.get('id') is None:
             data['id'] = temp_article.id
         provider.update(data, temp_article)
