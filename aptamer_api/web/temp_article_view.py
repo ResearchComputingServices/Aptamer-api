@@ -150,8 +150,6 @@ def upload_temp_articles():
     try:
         for _, row in data.iterrows():
             d = dict(row)
-            #print(d)
-            #print(type(d["PubMed ID"]))
             if type(d["PubMed ID"]) == int or type(d["Year of publication"]) == int:
                 temp_article = {
                     "id": provider.generate_id(field=TempArticle.id),
@@ -254,14 +252,13 @@ def decline_temp_article():
             if temp_article:
                 if data.get('id') is None:
                     data['id'] = temp_article.id
-                data["status"] = "Declined"
-                data["operator"] = user_provider.get_authenticated_user().name
+                temp_article.status = "Declined"
+                temp_article.operator = user_provider.get_authenticated_user().name
                 provider.update(data, temp_article)
                 db.session.commit()
                 response = Response(json.dumps(data), 200, mimetype="application/json")
             else:
                 response = Response(json.dumps(data), 404, mimetype="application/json")
-
         else:
             error = {"message": "Access Denied"}
             response = Response(json.dumps(error), 403, mimetype="application/json")
@@ -303,9 +300,9 @@ def update_status_to_approve_temp_article(data):
     if temp_article:
         if data.get('id') is None:
             data['id'] = temp_article.id
-        data["status"] = "Approved"
-        data["operator"] = user_provider.get_authenticated_user().name
         provider.update(data, temp_article)
+        temp_article.status = "Approved"
+        temp_article.operator = user_provider.get_authenticated_user().name
         db.session.commit()
 
 @aptamer_bp.route("/temp_articles/export", methods=['GET'])
