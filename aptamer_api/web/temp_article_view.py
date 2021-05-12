@@ -279,10 +279,11 @@ def approve_temp_article():
             data = request.get_json()
             data["status"] = "Approved"
             data["operator"] = user_provider.get_authenticated_user().name
+            update_status_to_approve_temp_article(data)
             article = article_provider.add(data)
             result = article_schema.dump(article)
             response = jsonify(result)
-            update_status_to_approve_temp_article(data)
+
         else:
             error = {"message": "Access Denied"}
             response = Response(json.dumps(error), 403, mimetype="application/json")
