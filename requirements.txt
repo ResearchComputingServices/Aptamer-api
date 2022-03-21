@@ -76,7 +76,7 @@ tornado==6.1
 tqdm==4.60.0
 urllib3==1.26.5
 vine==5.0.0
-waitress==2.0.0
+waitress==2.1.1
 wcwidth==0.2.5
 Werkzeug==2.0.0rc5
 xlrd==2.0.1
